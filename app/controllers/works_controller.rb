@@ -1,4 +1,4 @@
-class WorkController < ApplicationController
+class WorksController < ApplicationController
     before_action :authenticate_user!
     def index
     @works = Work.all
@@ -6,7 +6,7 @@ class WorkController < ApplicationController
     
     def new
     @work = Work.new
-    
+    @task = Task.all
     end
 
     def create

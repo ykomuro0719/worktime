@@ -5,6 +5,7 @@ class CreateWorks < ActiveRecord::Migration
       t.date :date
       t.string :work
       t.integer :work_time
+      t.integer :task_id
 
       t.timestamps null: false
     end
