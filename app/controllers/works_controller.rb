@@ -5,8 +5,9 @@ class WorksController < ApplicationController
     end
     
     def new
-    @work = Work.new
+    @work = Work.new(params[:date])
     @task = Task.all
+    @dt =params[:date]
     end
 
     def create

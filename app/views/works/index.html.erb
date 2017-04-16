@@ -1,3 +1,6 @@
 <h1>HelloWorld!</h1>
-
+<%= month_calendar do |date| %>
+  <%= link_to date, new_work_path(date) %>
+ 
+<% end %>
 <%= link_to '新規作成', new_work_path %>

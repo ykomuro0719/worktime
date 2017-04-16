@@ -1,7 +1,7 @@
 <h1>入力ページ</h1>
-
+<%= @dt %>
 <%= form_for(@work) do |f| %>
-  
+        
         <%= f.label :work, "仕事内容" %>
        
         <%= f.collection_select :task_id, Task.all, :id, :task %>
