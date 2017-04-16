@@ -11,9 +11,8 @@ class WorksController < ApplicationController
     end
 
     def create
-        @work = Work.new(post_params)
-        @work.save
-        redirect_to @work
+        @work = Work.create(post_params)
+        redirect_to works_path
     end
 
     def edit
