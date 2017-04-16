@@ -7,7 +7,7 @@ class WorksController < ApplicationController
     def new
     @work = Work.new(params[:date])
     @task = Task.all
-    @dt =params[:date]
+    @dt = params[:date]
     end
 
     def create
@@ -16,12 +16,19 @@ class WorksController < ApplicationController
     end
 
     def edit
+        @work = Work.new
+        @work.date = params[:date]
+        @task = Task.all
+        @dt = params[:date]
     end
 
     def update
+        @work = Work.create(work_params)
+        redirect_to edit_work_path(params[:date])
     end
 
     def show
+        @works = Work.where(date: params[:date])  
     end
 
     def destroy

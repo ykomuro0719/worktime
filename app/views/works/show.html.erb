@@ -1,0 +1,14 @@
+<h1>仕事内容</h1>
+<%= link_to "新規入力", edit_work_path %>
+<table>
+　<tr>
+    <td>仕事内容</td>
+    <td>時間</td>
+　</tr>
+<% @works.each do |work| %>
+　<tr>
+    <td><%= work.work %></td>
+    <td><%= work.work_time %></td>
+　</tr>
+　<% end %>
+</table>
