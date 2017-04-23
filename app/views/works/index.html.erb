@@ -1,4 +1,5 @@
 <h1>WorkTime Recorder!</h1>
+<p>こんにちは<%= current_user.email %>さん</p>
 <%= month_calendar do |date| %>
-  <%= link_to date, work_path(date) %>
+  <%= link_to date.mday, work_path(date) %>
 <% end %>
