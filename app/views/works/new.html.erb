@@ -15,3 +15,9 @@
 <% end %>
 
 <%= link_to "戻る", work_path(@dt) %>
+<div class="col-sm-1">
+<p><button type="button" class="btn btn-primary"><%= link_to 'TOP', root_path %></button></p>
+</div>
+<div class="col-sm-1">
+<p><button type="button" class="btn btn-primary"><%= link_to "LOG OUT", destroy_user_session_path, method: :delete %></button></p>
+</div>
