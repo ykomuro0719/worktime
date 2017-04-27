@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>WorkTime Recorder!</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -14,7 +14,8 @@
   <% end %>
 
 <%= yield %>
-<%= link_to 'トップページ', works_path %>
-<p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+<p><button type="button" class="btn btn-primary"><%= link_to 'トップページ', root_path %></button></p>
+<p><button type="button" class="btn btn-primary"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button></p>
+
 </body>
 </html>

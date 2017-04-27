@@ -25,12 +25,18 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Bootstrap
 gem 'bootstrap-sass'
-
+gem 'bootstrap_form'
 # Devise
 gem 'devise'
 gem 'omniauth-twitter'
 
 gem "simple_calendar", "~> 2.0"
+
+# Debug Tools
+gem 'awesome_print', require: 'ap'
+gem "better_errors"
+gem 'pry-rails', group: :development
+gem 'quiet_assets', group: :development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

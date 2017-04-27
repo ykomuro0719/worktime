@@ -3,7 +3,20 @@ Rails.application.routes.draw do
   devise_for :installs
 
   root to: "works#index"
-  resources :works, param: :date
+  
+  resources "works" , only: [:new, :create, :edit, :update, :destroy]
+  resources "works", param: :date, :only => [:show]
+  
+  #get 'works/:date/new' to: 'works#new',as: 'new_work'
+  #get 'works/:date/edit' to: 'works#edit',as: 'edit_work'
+  #get 'works/:date' to: 'works#show',as: 'work'
+  #post 'works/:date' to: 'works#create'
+  #patch 'works/:date' to: 'works#update'
+ # delete 'works/:id' to:'works#destroy' as:'destroy_work'
+  
+  #delete 'works/:date/:id' => 'works#destroy', as: 'destroy_work'
+  #patch 'works/:date/edit/:id' => 'works#update'
+  #resources :works, param: :date 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

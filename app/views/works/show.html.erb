@@ -1,5 +1,8 @@
-<h1><%= params[:date] %>の工数管理</h1>
-<%= link_to "新規入力", edit_work_path %>
+<h1><%= @dt %>の工数管理</h1>
+<button type="button" class="btn btn-primary">
+    <%= link_to "新規入力", new_work_path(:date => @dt) %>
+</button>
+
 <table>
 　<tr>
     <td>仕事内容</td>
@@ -10,6 +13,16 @@
 　<tr>
     <td><%= work.task.task %></td>
     <td><%= work.work_time %></td>
+    
+    <td>
+    <%= link_to "編集", edit_work_path(work), class: "btn-default" "btn-xs" %>
+    
+    </td>
+    
+    <td>
+    <%= link_to "削除", work_path(work.id), method: :delete, class: "btn-danger" "btn-xs" %>
+    </td>
+    
     <% @sum_time = @sum_time + work.work_time.to_f %>
 　</tr>
 　<% end %>

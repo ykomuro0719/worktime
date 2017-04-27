@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20170416095537) do
     t.integer  "user_id"
     t.date     "date"
     t.string   "work"
-    t.integer  "work_time"
+    t.float    "work_time"
     t.integer  "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

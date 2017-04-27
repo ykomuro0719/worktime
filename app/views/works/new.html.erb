@@ -3,11 +3,15 @@
 <%= form_for(@work) do |f| %>
         
         <%= f.label :work, "仕事内容" %>
-       
         <%= f.collection_select :task_id, Task.all, :id, :task %>
 
         <%= f.label :work_time, "時間" %>
-       
+        
         <%= f.select :work_time, time_list %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :date, :value => @dt %>
+        
   <%= f.submit %>
 <% end %>
+
+<%= link_to "戻る", work_path(@dt) %>

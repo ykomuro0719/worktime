@@ -1,6 +1,6 @@
-<h1>入力ページ</h1>
-<%= @work.date %>
-<%= form_for(@work) do |f| %>
+<h1>編集ページ</h1>
+<%= @dt %>
+<%= form_for @work do |f| %>
         
         <%= f.label :work, "仕事内容" %>
         <%= f.collection_select :task_id, Task.all, :id, :task %>
@@ -9,9 +9,9 @@
         
         <%= f.select :work_time, time_list %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :id, :value => @work.id %>
         <%= f.hidden_field :date, :value => @work.date %>
-        
   <%= f.submit %>
 <% end %>
 
-<%= link_to "戻る", work_path(params[:date]) %>
+<%= link_to "戻る", work_path(@work.date) %>
