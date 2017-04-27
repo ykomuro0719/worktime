@@ -14,7 +14,9 @@
   <%= f.submit %>
 <% end %>
 
-<%= link_to "戻る", work_path(@work.date) %>
+<div class="col-sm-1"><p><button type="button" class="btn btn-primary">
+<%= link_to "戻る", work_path(@work.date) %></p></button>
+</div>
 <div class="col-sm-1">
 <p><button type="button" class="btn btn-primary"><%= link_to 'TOP', root_path %></button></p>
 </div>
