@@ -1,0 +1,12 @@
+<h1>Request Index</h1>
+<%= link_to "新規作成", new_admin_request_path %>
+<table>
+<% @requests.each do |request| %>
+    <tr>
+    <td><%= request.requestTitle %></td>
+    <td><%= link_to "編集", edit_admin_request_path(request) %></td>
+   <td><%= link_to "削除", admin_request_path(request.id), method: :delete %></td>
+   </tr>
+<% end %>
+</table>
+<%= link_to "管理者トップ", admin_tasks_path %>

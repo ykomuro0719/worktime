@@ -1,0 +1,22 @@
+<h1>Task Index</h1>
+<%= link_to "分類1", admin_child1tasks_path %>
+<%= link_to "分類2", admin_child2tasks_path %>
+<%= link_to "要求元", admin_requests_path %>
+
+
+<%= link_to "新規作成", new_admin_task_path %>
+<table>
+<% @tasks.each do |task| %>
+    <tr>
+    <td><%= task.taskTitle %></td>
+    <td><%= link_to "編集", edit_admin_task_path(task) %></td>
+   <td><%= link_to "削除", admin_task_path(task.id), method: :delete %></td>
+   </tr>
+<% end %>
+</table>
+
+
+
+<% @tasks.each do |task| %>
+<%= task.taskTitle %>
+<% end %>

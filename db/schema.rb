@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416095537) do
+ActiveRecord::Schema.define(version: 20170430013912) do
+
+  create_table "child1_tasks", force: :cascade do |t|
+    t.string "child1Title"
+  end
+
+  create_table "child2_tasks", force: :cascade do |t|
+    t.string "child2Title"
+  end
 
   create_table "installs", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -31,9 +39,30 @@ ActiveRecord::Schema.define(version: 20170416095537) do
   add_index "installs", ["email"], name: "index_installs_on_email", unique: true
   add_index "installs", ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true
 
+  create_table "requests", force: :cascade do |t|
+    t.string "requestTitle"
+  end
+
+  create_table "select_child1s", force: :cascade do |t|
+    t.integer "task_id"
+    t.integer "taskIndex"
+    t.integer "child1_id"
+  end
+
+  create_table "select_child2s", force: :cascade do |t|
+    t.integer "child1_id"
+    t.integer "child1Index"
+    t.integer "child2_id"
+  end
+
+  create_table "select_requests", force: :cascade do |t|
+    t.integer "task_id"
+    t.integer "taskIndex"
+    t.integer "request_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
-    t.string "task",    default: "", null: false
-    t.string "subtask", default: "", null: false
+    t.string "taskTitle"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,8 +89,11 @@ ActiveRecord::Schema.define(version: 20170416095537) do
     t.string   "work"
     t.float    "work_time"
     t.integer  "task_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "child1Task_id"
+    t.integer  "child2Task_id"
+    t.integer  "request_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end

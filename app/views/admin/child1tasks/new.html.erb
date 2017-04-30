@@ -1,0 +1,9 @@
+<h1>New</h1>
+
+<%= form_for(@child1task, :url => admin_child1tasks_path) do |f|  %>
+        <%= f.label :child1Title, "分類1" %>
+        <%= f.text_field :child1Title %>
+<%= f.submit %>
+
+<% end %>
+<%= render 'footer' %>

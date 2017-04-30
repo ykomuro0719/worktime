@@ -6,7 +6,9 @@ class CreateWorks < ActiveRecord::Migration
       t.string :work
       t.float :work_time
       t.integer :task_id
-
+      t.integer :child1Task_id
+      t.integer :child2Task_id
+      t.integer :request_id
       t.timestamps null: false
     end
   end

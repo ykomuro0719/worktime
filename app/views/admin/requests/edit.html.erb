@@ -1,0 +1,11 @@
+<h2>edit</h2>
+<%= @request.requestTitle %>
+
+
+<%= form_for(@request, :url => admin_request_path) do |f|  %>
+        <%= f.label :requestTitle, "要求元" %>
+        <%= f.text_field :requestTitle %>
+<%= f.submit %>
+
+<% end %>
+<%= render 'footer' %>

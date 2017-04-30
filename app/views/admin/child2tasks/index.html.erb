@@ -1,0 +1,12 @@
+<h1>child2task Index</h1>
+<%= link_to "新規作成", new_admin_child2task_path %>
+<table>
+<% @child2tasks.each do |child2task| %>
+    <tr>
+    <td><%= child2task.child2Title %></td>
+    <td><%= link_to "編集", edit_admin_child2task_path(child2task) %></td>
+   <td><%= link_to "削除", admin_child2task_path(child2task.id), method: :delete %></td>
+   </tr>
+<% end %>
+</table>
+<%= link_to "管理者トップ", admin_tasks_path %>

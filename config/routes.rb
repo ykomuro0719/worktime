@@ -7,6 +7,14 @@ Rails.application.routes.draw do
   resources "works" , only: [:new, :create, :edit, :update, :destroy]
   resources "works", param: :date, :only => [:show]
   
+    namespace :admin do
+     resources :tasks, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+     resources :requests, only: [:index, :new, :create, :edit, :update, :destroy]
+     resources :child1tasks, only: [:index, :new, :create, :edit, :update, :destroy]
+     resources :child2tasks, only: [:index, :new, :create, :edit, :update, :destroy]
+end
+  
+  
   #get 'works/:date/new' to: 'works#new',as: 'new_work'
   #get 'works/:date/edit' to: 'works#edit',as: 'edit_work'
   #get 'works/:date' to: 'works#show',as: 'work'
