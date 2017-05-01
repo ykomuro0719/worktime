@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     passwords:      "users/passwords"
   }
   devise_for :installs
+  resources :users, :only => [:index, :show]
 
   root to: "works#index"
   
