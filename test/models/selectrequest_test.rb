@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SelectRequestTest < ActiveSupport::TestCase
+class SelectrequestTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

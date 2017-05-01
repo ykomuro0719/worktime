@@ -1,9 +1,0 @@
-<h2>New</h2>
-
-<%= form_for(@task, :url => admin_tasks_path) do |f|  %>
-        <%= f.label :taskTitle, "大分類" %>
-        <%= f.text_field :taskTitle %>
-        <%= f.submit %>
-
-<% end %>
-<%= render 'footer' %>

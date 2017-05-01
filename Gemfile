@@ -32,11 +32,16 @@ gem 'omniauth-twitter'
 
 gem "simple_calendar", "~> 2.0"
 
+gem 'composite_primary_keys'
+gem "nested_form"
+
+
 # Debug Tools
 gem 'awesome_print', require: 'ap'
 gem "better_errors"
 gem 'pry-rails', group: :development
 gem 'quiet_assets', group: :development
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -58,5 +63,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+   
+
 end
 

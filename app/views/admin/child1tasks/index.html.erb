@@ -3,7 +3,7 @@
 <table>
 <% @child1tasks.each do |child1task| %>
     <tr>
-    <td><%= child1task.child1Title %></td>
+    <td><%= child1task.child1title %></td>
     <td><%= link_to "編集", edit_admin_child1task_path(child1task) %></td>
    <td><%= link_to "削除", admin_child1task_path(child1task.id), method: :delete %></td>
    </tr>

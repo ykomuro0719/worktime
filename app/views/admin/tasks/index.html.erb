@@ -6,11 +6,17 @@
 
 <%= link_to "新規作成", new_admin_task_path %>
 <table>
+    <tr>
+        <th>大分類</th>
+        <th>分類1</th>
+        
+    </tr>
 <% @tasks.each do |task| %>
     <tr>
-    <td><%= task.taskTitle %></td>
+    <td><%= task.tasktitle %></td>
     <td><%= link_to "編集", edit_admin_task_path(task) %></td>
    <td><%= link_to "削除", admin_task_path(task.id), method: :delete %></td>
    </tr>
 <% end %>
 </table>
+<%= link_to "一般ページ", root_path %>

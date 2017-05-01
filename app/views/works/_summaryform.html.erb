@@ -1,0 +1,34 @@
+<div class="container">
+<table class="table table-striped table-bordered">
+　<div class="row"><tr>
+  <div class="col-sm-3"><th>仕事内容</th></div>
+　<div class="col-sm-2"><th>分類1</th></div>
+　<div class="col-sm-2"><th>分類2</th></div>
+　<div class="col-sm-2"><th>要求元</th></div>
+　<div class="col-sm-1"><th>時間</th></div>
+　<div class="col-sm-2"><th></th></div>
+　</tr></div>
+　
+<% @works.each do |work| %>
+　<div class="row">
+　<tr>
+    <div class="col-sm-3"><td><%= work.task.tasktitle %></td></div>
+    <div class="col-sm-2"><td><%= work.child1task.child1title %></td></div>
+    <div class="col-sm-2"><td><%= work.child2task.child2title %></td></div>
+    <div class="col-sm-2"><td><%= work.request.requesttitle %></td></div>
+    <div class="col-sm-1"><td><%= work.work_time %></td></div>
+    <div class="col-sm-2"><td>
+    <%= link_to "編集", edit_work_path(work), class: "btn-default" "btn-xs" %>
+    <%= link_to "削除", work_path(work), method: :delete, class: "btn-danger" "btn-xs" %>
+    </td>
+    </div>
+    <% @sum_time = @sum_time + work.work_time.to_f %>
+　</tr>
+　<% end %>
+　<tr>
+　    <div class="col-sm-6">
+　    <td>合計時間</td></div>
+　    <div class="col-sm-2"><td><%= @sum_time %>時間</td></div>
+　    <div class="col-sm-1"><td></td></div>
+　</tr>
+</table></div>

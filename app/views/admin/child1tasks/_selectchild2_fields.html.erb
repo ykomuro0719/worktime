@@ -1,0 +1,3 @@
+        <%= b.label :child2task_id, "分類2" %>
+        <%= b.collection_select :child2task_id, Child2task.all, :id, :child2title %>
+        <%= b.link_to_remove "Remove this" %>

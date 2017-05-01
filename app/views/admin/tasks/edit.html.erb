@@ -1,10 +1,21 @@
 <h2>edit</h2>
-<%= @task.taskTitle %>
 
-<%= form_for(@task, :url => admin_task_path) do |f|  %>
+<%= nested_form_for(@task, :url => admin_task_path) do |f| %>
+        <%= f.label :tasktitle, "大分類" %>
+        <%= f.text_field :tasktitle %>
+    
+    <%= f.fields_for :selectchild1s do |b| %>
+    <%= render "selectchild1_fields", b: b  %>
+    
+    <% end %>
+　  <%= f.link_to_add "Add this", :selectchild1s %>　
+　  
+　  <%= f.fields_for :selectrequests do |c| %>
+    <%= render "selectrequest_fields", c: c  %>
+    
+    <% end %>
+　  <%= f.link_to_add "Add this", :selectrequests %>
 
-        <%= f.label :taskTitle, "大分類" %>
-        <%= f.text_field :taskTitle %>
-<%= f.submit %>
+　　<%= f.submit %>
 <% end %>
 <%= render 'footer' %>

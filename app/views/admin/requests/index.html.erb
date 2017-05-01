@@ -3,7 +3,7 @@
 <table>
 <% @requests.each do |request| %>
     <tr>
-    <td><%= request.requestTitle %></td>
+    <td><%= request.requesttitle %></td>
     <td><%= link_to "編集", edit_admin_request_path(request) %></td>
    <td><%= link_to "削除", admin_request_path(request.id), method: :delete %></td>
    </tr>

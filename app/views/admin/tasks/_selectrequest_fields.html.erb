@@ -1,0 +1,3 @@
+        <%= c.label :request_id, "要求元" %>
+        <%= c.collection_select :request_id, Request.all, :id, :requesttitle %>
+        <%= c.link_to_remove "Remove this" %>
