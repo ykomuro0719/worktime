@@ -2,8 +2,9 @@
 #
 # Table name: tasks
 #
-#  id        :integer          not null, primary key
-#  tasktitle :string           not null
+#  id         :integer          not null, primary key
+#  tasktitle  :string           not null
+#  taskstatus :boolean          default("f"), not null
 #
 
 class Task < ActiveRecord::Base

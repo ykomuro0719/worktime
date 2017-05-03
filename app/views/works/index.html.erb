@@ -14,9 +14,11 @@
   <% else %>
       <div class="" >
   <% end %>
-  <%= link_to date.mday, work_path(date), { :class => "btn-block text-center" } %>
+  <%= link_to date.mday, new_work_path(:date => date), { :class => "btn-block text-center" } %>
 </div>
 <% end %>
+
+
 
 
 

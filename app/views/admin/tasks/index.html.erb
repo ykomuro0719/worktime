@@ -17,7 +17,8 @@
     <tr>
     <td><%= task.tasktitle %></td>
     <td><%= link_to "編集", edit_admin_task_path(task) %></td>
-   <td><%= link_to "削除", admin_task_path(task.id), method: :delete %></td>
+   <td><%= link_to "削除", admin_task_path(task.id), method: :delete, 
+   :data => {:confirm => '本当に削除しますか？入力済み工数がある場合紐づく工数画面にてエラーが発生します'}  %></td>
    </tr>
 <% end %>
 </table>

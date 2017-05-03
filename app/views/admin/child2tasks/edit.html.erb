@@ -5,6 +5,8 @@
 <%= form_for(@child2task, :url => admin_child2task_path) do |f|  %>
         <%= f.label :child2title, "分類2" %>
         <%= f.text_field :child2title %>
+        <%= f.label :child2status,"有効" %>
+        <%= f.check_box :child2status, { }, true, false %>
 <%= f.submit %>
 
 <% end %>

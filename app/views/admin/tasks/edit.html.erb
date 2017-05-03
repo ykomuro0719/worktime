@@ -3,7 +3,8 @@
 <%= nested_form_for(@task, :url => admin_task_path) do |f| %>
         <%= f.label :tasktitle, "大分類" %>
         <%= f.text_field :tasktitle %>
-    
+        <%= f.label :taskstatus,"有効" %>
+        <%= f.check_box :taskstatus, { }, true, false %>        
     <%= f.fields_for :selectchild1s do |b| %>
     <%= render "selectchild1_fields", b: b  %>
     

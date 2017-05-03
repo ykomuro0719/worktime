@@ -2,8 +2,9 @@
 #
 # Table name: child1tasks
 #
-#  id          :integer          not null, primary key
-#  child1title :string           not null
+#  id           :integer          not null, primary key
+#  child1title  :string           not null
+#  child1status :boolean          default("f"), not null
 #
 
 class Child1task < ActiveRecord::Base

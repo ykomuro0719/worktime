@@ -2,8 +2,9 @@
 #
 # Table name: child2tasks
 #
-#  id          :integer          not null, primary key
-#  child2title :string           not null
+#  id           :integer          not null, primary key
+#  child2title  :string           not null
+#  child2status :boolean          default("f"), not null
 #
 
 require 'test_helper'
