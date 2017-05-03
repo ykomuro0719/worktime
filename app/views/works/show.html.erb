@@ -1,15 +1,12 @@
-<h1><%= @dt %>の工数管理</h1>
 
-<button type="button" class="btn btn-primary">
+<h1><%= @dt %>の工数管理</h1>
+<div class="col-sm-2">
+<button type="button" class="btn btn-primary btn-block">
     <%= link_to "新規入力", new_work_path(:date => @dt) %>
 </button>
-
+</div>
 <%= render "summaryform" %>
 
-<div class="col-sm-1">
-<p><button type="button" class="btn btn-primary"><%= link_to 'TOP', root_path %></button></p>
+<div class="col-sm-2">
+<button type="button" class="btn btn-primary btn-block"><%= link_to 'TOP', root_path %></button>
 </div>
-<div class="col-sm-1">
-<p><button type="button" class="btn btn-primary"><%= link_to "LOG OUT", destroy_user_session_path, method: :delete %></button></p>
-</div>
-

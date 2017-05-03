@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <title>Admin</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -12,7 +12,7 @@
   <% if user_signed_in? %>
     
   <% end %>
-
+ <%= render "shared/header" %>
 <%= yield %>
 
 </body>

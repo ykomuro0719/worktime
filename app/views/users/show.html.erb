@@ -1,3 +1,33 @@
 <% provide(:title, @user.email) %>
-<%= current_user.id %>
-<h1>My page (<%= @user.email %>)</h1>
+
+<h1>My page (<%= @user.name %>)</h1>
+<%= @current_user.name %>
+<table class="table-striped">
+    <div class = "row"><tr>
+        <div class="col-sm-3"><td>名前</td></div>
+        <div class="col-sm-3"><td><%= @user.name %></td></div>
+    </tr></div>
+    <div class="row"><tr>
+        <div class="col-sm-3"><td>email</td></div>
+        <div class="col-sm-3"><td><%= @user.email %></td></div>
+    </tr></div>
+    <div class="row"><tr>
+        <div class="col-sm-3"><td>社員No</td></div>
+        <div class="col-sm-3"><td><%= @user.eid %></td></div>
+    </tr></div>
+    <div class="row"><tr>
+        <div class="col-sm-3"><td>権限区分</td></div>
+        <div class="col-sm-3"><td>
+            <% if @user.admin %>
+                管理者
+            <% else %>
+                一般
+            <% end %>
+            </td></div>
+    </tr></div>
+    
+</table>
+<div class="col-sm-2"><p><button type="button" class="btn btn-primary btn-block">
+
+<%= link_to "編集",edit_user_path(params[:id]) %></button>
+</div>

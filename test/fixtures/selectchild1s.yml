@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: selectchild1s
+#
+#  id            :integer          not null, primary key
+#  task_id       :integer
+#  child1task_id :integer
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined.  If you add columns to the
