@@ -25,6 +25,12 @@ class UsersController < ApplicationController
             #binding.pry
             redirect_to user_path(params[:id])
     end
+    def destroy
+        @user = User.find(params[:id])
+        @user.destroy_all
+        redirect_to users_path, notice: 'User was successfully deleted'
+    end
+    
 
     private
     def identifyuser

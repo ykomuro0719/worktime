@@ -2,28 +2,28 @@
         <div class="form-inline">
         <div class="form-group">
         <%= f.label :task_id, "仕事内容",:class => "control-label" %>
-        <%= f.collection_select :task_id, Task.all, :id, :tasktitle, :class =>"form-control" %>
+        <%= f.collection_select :task_id, Task.all, :id, :tasktitle, {}, :class =>"form-control" %>
         </div>
         <div class="form-group">
         <%= f.label :child1task_id, "分類1" ,:class => "control-label" %>
-        <%= f.collection_select :child1task_id, Child1task.all, :id, :child1title, :class =>"form-control" %>
+        <%= f.collection_select :child1task_id, Child1task.all, :id, :child1title, {}, :class =>"form-control" %>
         </div>
         <div class="form-group">
         <%= f.label :child2task_id, "分類2" ,:class => "control-label" %>
-        <%= f.collection_select :child2task_id, Child2task.all, :id, :child2title, :class =>"form-control" %>
+        <%= f.collection_select :child2task_id, Child2task.all, :id, :child2title, {}, :class =>"form-control" %>
         </div>
         <div class="form-group">
         <%= f.label :request_id, "要求元" ,:class => "control-label" %>
-        <%= f.collection_select :request_id, Request.all, :id, :requesttitle, :class =>"form-control" %>
+        <%= f.collection_select :request_id, Request.all, :id, :requesttitle, {}, :class =>"form-control" %>
         </div>
         <div class="form-group">
-        <%= f.label :work_time, "時間" ,:class => "control-label" %>
-        <%= f.select :work_time, time_list, :class =>"form-control" %>
+        <%= f.label :work_time, "時間" , :class => "control-label" %>
+        <%= f.select :work_time, time_list, {}, :class =>"form-control" %>
         </div>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :date, :value => @dt %>
         
-        <%= f.submit "送信" ,:class => "btn" %>
+        <%= f.submit "送信", :class => "form-control btn-default" %>
                 
 <% end %>
 </div>

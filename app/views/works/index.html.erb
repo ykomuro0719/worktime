@@ -1,9 +1,21 @@
-
-
-<h1>WorkTime Recorder!</h1>
+<%= render "shared/logoheader" %>
+<h2>WorkTime Recorder!</h2>
 <p>こんにちは<%= current_user.name %>さん</p>
 <%= month_calendar do |date| %>
-  <%= link_to date.mday, work_path(date) %>
+  <% dayworks = @works.where("date": date.to_s ) %>
+  <% sum_time = 0 %>
+  <% dayworks.each do |daywork| %>
+  <% sum_time += daywork.work_time %>
+  <% end %>
+  <% if sum_time.to_f >= 8 %>
+      <div class="finished" >
+  <% elsif sum_time.to_f > 0 %>
+       <div class="doing" >
+  <% else %>
+      <div class="" >
+  <% end %>
+  <%= link_to date.mday, work_path(date), { :class => "btn-block text-center" } %>
+</div>
 <% end %>
 
 

@@ -26,8 +26,9 @@
   <div class="field">
     <%= f.label :password_confirmation, "パスワードの確認" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>  <div class="field">
-
+  </div>  
+  
+  <div class="field">
   <% if @current_user.admin %>
   <div><%= f.label :admin %><br />
   <%= f.check_box :admin, { }, "true", "false" %></div>

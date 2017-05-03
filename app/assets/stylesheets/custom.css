@@ -1,11 +1,9 @@
 .verticalcenter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  height: 300px;
-  margin-top: -150px;
-  margin-left: -200px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
 }
 
@@ -54,3 +52,18 @@
         padding-left: 20px;
     }
 }
+
+.doing{
+    background-color: #FFFFBB;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+}
+.finished{
+    background-color: #C299FF;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+}
+
+
