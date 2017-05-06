@@ -1,9 +1,8 @@
 class CreateTasks < ActiveRecord::Migration
   def change
     create_table :tasks do |t|
-
-      t.string :task,              null: false, default: ""
-      t.string :subtask,              null: false, default: ""
+      t.string :tasktitle, null: false
+      
     end
   end
 end

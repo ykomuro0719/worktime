@@ -1,11 +1,32 @@
 Rails.application.routes.draw do
-  devise_for :users
+  #devise_for :users
+  devise_for :users, controllers: {
+    registrations:  "users/registrations",
+    sessions:       "users/sessions",
+    passwords:      "users/passwords"
+  }
   devise_for :installs
+  resources :users, :only => [:index, :new, :show, :edit, :update]
 
   root to: "works#index"
-  
+
+  resources :"works" do
+      collection do
+        get :getchild1
+        get :getchild2
+        get :getrequest
+      end
+    end
   resources "works" , only: [:new, :create, :edit, :update, :destroy]
   resources "works", param: :date, :only => [:show]
+
+    namespace :admin do
+     resources :tasks, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+     resources :requests, only: [:index, :new, :create, :edit, :update, :destroy]
+     resources :child1tasks, only: [:index, :new, :create, :edit, :update, :destroy]
+     resources :child2tasks, only: [:index, :new, :create, :edit, :update, :destroy]
+end
+  
   
   #get 'works/:date/new' to: 'works#new',as: 'new_work'
   #get 'works/:date/edit' to: 'works#edit',as: 'edit_work'

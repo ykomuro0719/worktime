@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416095537) do
+ActiveRecord::Schema.define(version: 20170503115542) do
+
+  create_table "child1tasks", force: :cascade do |t|
+    t.string  "child1title",                  null: false
+    t.boolean "child1status", default: false, null: false
+  end
+
+  create_table "child2tasks", force: :cascade do |t|
+    t.string  "child2title",                  null: false
+    t.boolean "child2status", default: false, null: false
+  end
 
   create_table "installs", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -31,24 +41,47 @@ ActiveRecord::Schema.define(version: 20170416095537) do
   add_index "installs", ["email"], name: "index_installs_on_email", unique: true
   add_index "installs", ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true
 
+  create_table "requests", force: :cascade do |t|
+    t.string  "requesttitle",                  null: false
+    t.boolean "requeststatus", default: false, null: false
+  end
+
+  create_table "selectchild1s", force: :cascade do |t|
+    t.integer "task_id"
+    t.integer "child1task_id"
+  end
+
+  create_table "selectchild2s", force: :cascade do |t|
+    t.integer "child1task_id"
+    t.integer "child2task_id"
+  end
+
+  create_table "selectrequests", force: :cascade do |t|
+    t.integer "task_id"
+    t.integer "request_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
-    t.string "task",    default: "", null: false
-    t.string "subtask", default: "", null: false
+    t.string  "tasktitle",                  null: false
+    t.boolean "taskstatus", default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "name",                                   null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "admin",                  default: false, null: false
+    t.integer  "eid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -57,11 +90,13 @@ ActiveRecord::Schema.define(version: 20170416095537) do
   create_table "works", force: :cascade do |t|
     t.integer  "user_id"
     t.date     "date"
-    t.string   "work"
     t.float    "work_time"
     t.integer  "task_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "child1task_id"
+    t.integer  "child2task_id"
+    t.integer  "request_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end

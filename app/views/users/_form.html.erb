@@ -1,0 +1,37 @@
+<%= form_for(@user) do |f|  %>
+  <div class="field">
+    <%= f.label :name, "名前" %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :eid, "社員No" %><br />
+    <%= f.text_field :eid, autofocus: true %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :password, "パスワード" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "パスワードの確認" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>  
+  
+  <div class="field">
+  <% if @current_user.admin %>
+  <div><%= f.label :admin %><br />
+  <%= f.check_box :admin, { }, "true", "false" %></div>
+  <% end %>
+<%= f.submit %>
+<% end %>

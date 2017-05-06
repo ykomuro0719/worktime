@@ -1,0 +1,5 @@
+        <div class="form-group">
+        <%= b.label :child1task_id, "分類1" ,:class => "control-label" %>
+        <%= b.collection_select :child1task_id, Child1task.where(:child1status => true), :id, :child1title, :class =>"form-control" %>
+        <%= b.link_to_remove "Remove this" %>
+        </div>

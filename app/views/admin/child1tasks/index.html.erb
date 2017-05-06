@@ -1,0 +1,19 @@
+<h1>child1task Index</h1>
+<%= link_to "新規作成", new_admin_child1task_path %>
+<div class="container">
+<table class="table-bordered table-striped">
+    <tr class="row">
+        <th class="col-sm-6">名称</th>
+        <th class="col-sm-6"></th>
+    </tr>
+<% @child1tasks.each do |child1task| %>
+    <tr class="row">
+        <td class="col-sm-6"><%= child1task.child1title %></td>
+        <td class="col-sm-6"><%= link_to "編集", edit_admin_child1task_path(child1task) %>
+        <%= link_to "削除", admin_child1task_path(child1task.id), method: :delete,
+        :data => {:confirm => '本当に削除しますか？入力済み工数がある場合紐づく工数画面にてエラーが発生します'} %></td>
+   </tr>
+<% end %>
+</table>
+</div>
+<%= link_to "管理者トップ", admin_tasks_path %>

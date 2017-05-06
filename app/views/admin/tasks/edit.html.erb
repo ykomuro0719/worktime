@@ -1,0 +1,7 @@
+<h2>edit</h2>
+
+<%= nested_form_for(@task, :url => admin_task_path) do |f| %>
+<%= render "form", f: f %>
+
+<% end %>
+<%= render 'footer' %>

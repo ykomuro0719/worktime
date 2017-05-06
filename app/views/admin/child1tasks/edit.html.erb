@@ -1,0 +1,16 @@
+<h1>edit</h1>
+<%= @child1task.child1title %>
+<%= nested_form_for(@child1task, :url => admin_child1task_path) do |f|  %>
+        <%= f.label :child1title, "分類1" %>
+        <%= f.text_field :child1title %>
+        <%= f.label :child1status,"有効" %>
+        <%= f.check_box :child1status, { }, true, false %>
+        <%= f.fields_for :selectchild2s do |b| %>
+        <%= render "selectchild2_fields", b: b  %>
+        
+    <% end %>
+    <%= f.link_to_add "Add this", :selectchild2s %>
+<%= f.submit %>
+<% end %>
+
+<%= render 'footer' %>

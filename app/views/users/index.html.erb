@@ -1,0 +1,35 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+ 
+ <%= link_to "新規作成", new_user_path %>
+ 
+ 
+ <div class="container center-block" >
+ <table class="table-striped">
+    <div class = "row"><tr>
+        <div class="col-sm-1"><td>ID</td></div>
+        <div class="col-sm-2"><td>名前</td></div>
+        <div class="col-sm-2"><td>社員No</td></div>
+        <div class="col-sm-2"><td>権限</td></div>
+        <div class="col-sm-2"><td></td></div>
+    </tr></div>
+    
+  <% @users.each do |user| %>
+    <div class="row"><tr>
+        <div class="col-sm-1"><td><%= user.id %></td></div>
+        <div class="col-sm-2"><td><%= user.name %></td></div>
+        <div class="col-sm-2"><td><%= user.eid %></td></div>
+        <div class="col-sm-2"><td>
+          <% if user.admin %>
+              管理者
+            <% end %></td></div>
+        <div class="col-sm-2"><td><button type="button" class="btn-block">
+        <%= link_to "編集",edit_user_path(user.id) %></button>
+        </td></div>
+        <div class="col-sm-2"><td><button type="button" class="btn-block">
+        <%= link_to "削除", users_path(user.id), method: :delete, :confirm => '本当に削除しますか？', class: "btn-danger" "btn-xs" %></button>
+        </td></div>
+    </tr></div>
+  <% end %>
+</table>
+</div>

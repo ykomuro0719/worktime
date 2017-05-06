@@ -1,0 +1,19 @@
+<h1>Request Index</h1>
+<%= link_to "新規作成", new_admin_request_path %>
+<div class="container">
+<table class="table-bordered table-striped">
+    <tr class="row">
+        <th class="col-sm-6">名称</th>
+        <th class="col-sm-6"></th>
+    </tr>
+<% @requests.each do |request| %>
+    <tr class="row">
+        <td class="col-sm-6"><%= request.requesttitle %></td>
+        <td class="col-sm-6"><%= link_to "編集", edit_admin_request_path(request) %>
+        <%= link_to "削除", admin_request_path(request.id), method: :delete,
+        :data => {:confirm => '本当に削除しますか？入力済み工数がある場合紐づく工数画面にてエラーが発生します'} %></td>
+   </tr>
+<% end %>
+</table>
+</div>
+<%= link_to "管理者トップ", admin_tasks_path %>
