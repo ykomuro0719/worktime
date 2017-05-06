@@ -1,0 +1,16 @@
+<div class="form-inline">
+<div class="form-group">
+<%= f.label :child1title, "分類1",:class => "control-label" %>
+<%= f.text_field :child1title ,:class => "form-control"%>
+</div>
+<div class="form-group">
+<%= f.label :child1status,"有効",:class => "control-label" %>
+<%= f.check_box :child1status, { }, true, false %>
+</div>
+
+<%= f.fields_for :selectchild2s do |b| %>
+<%= render "selectchild2_fields", b: b  %>
+<% end %>
+<%= f.link_to_add "Add this", :selectchild2s %>
+<%= f.submit "送信", :class => "form-control btn-default" %>
+</div>

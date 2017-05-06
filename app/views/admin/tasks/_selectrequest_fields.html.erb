@@ -1,3 +1,5 @@
-        <%= c.label :request_id, "要求元" %>
-        <%= c.collection_select :request_id, Request.where(:requeststatus => true), :id, :requesttitle %>
+        <div class="form-group">
+        <%= c.label :request_id, "要求元" ,:class => "control-label"%>
+        <%= c.collection_select :request_id, Request.where(:requeststatus => true), :id, :requesttitle, :class =>"form-control" %>
         <%= c.link_to_remove "Remove this" %>
+        </div>

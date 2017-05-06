@@ -9,10 +9,17 @@ Rails.application.routes.draw do
   resources :users, :only => [:index, :new, :show, :edit, :update]
 
   root to: "works#index"
-  
+
+  resources :"works" do
+      collection do
+        get :getchild1
+        get :getchild2
+        get :getrequest
+      end
+    end
   resources "works" , only: [:new, :create, :edit, :update, :destroy]
   resources "works", param: :date, :only => [:show]
-  
+
     namespace :admin do
      resources :tasks, only: [:index, :new, :create, :show, :edit, :update, :destroy]
      resources :requests, only: [:index, :new, :create, :edit, :update, :destroy]

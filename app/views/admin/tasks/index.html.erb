@@ -7,19 +7,33 @@
 
 
 <%= link_to "新規作成", new_admin_task_path %>
-<table>
-    <tr>
-        <th>大分類</th>
-        <th>分類1</th>
-        
+<div class="container">
+<table class="table-striped table-bordered">
+    <tr class="row">
+        <th class="col-sm-3">大分類</th>
+        <th class="col-sm-3">分類1</th>
+        <th class="col-sm-3">要求元</th>
+        <th class="col-sm-3"></th>
     </tr>
 <% @tasks.each do |task| %>
-    <tr>
-    <td><%= task.tasktitle %></td>
-    <td><%= link_to "編集", edit_admin_task_path(task) %></td>
-   <td><%= link_to "削除", admin_task_path(task.id), method: :delete, 
-   :data => {:confirm => '本当に削除しますか？入力済み工数がある場合紐づく工数画面にてエラーが発生します'}  %></td>
+    <tr class="row">
+    <td class="col-sm-3"><%= task.tasktitle %></td>
+    <td class="col-sm-3">
+        <% task.child1tasks.each do |child1task| %>
+        <div class ="col-sm-12"><%= child1task.child1title %></div>
+        <% end %>
+    </td>
+    <td class="col-sm-3">
+        <% task.requests.each do |request| %>
+        <div class ="col-sm-12"><%= request.requesttitle %></div>
+        <% end %>
+    </td>    
+        
+    <td class="col-sm-3"><%= link_to "編集", edit_admin_task_path(task) %>
+    <%= link_to "削除", admin_task_path(task.id), method: :delete, 
+    :data => {:confirm => '本当に削除しますか？入力済み工数がある場合紐づく工数画面にてエラーが発生します'}  %></td>
    </tr>
 <% end %>
 </table>
+</div>
 <%= link_to "一般ページ", root_path %>
