@@ -2,9 +2,11 @@
 #
 # Table name: requests
 #
-#  id            :integer          not null, primary key
-#  requesttitle  :string           not null
-#  requeststatus :boolean          default("f"), not null
+#  id               :integer          not null, primary key
+#  requesttitle     :string           not null
+#  requeststatus    :boolean          default("f"), not null
+#  requeststartdate :date
+#  requestenddate   :date
 #
 
 class Request < ActiveRecord::Base

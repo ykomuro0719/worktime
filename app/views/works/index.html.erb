@@ -1,10 +1,14 @@
 <%= render "shared/logoheader" %>
 <h2>WorkTime Recorder!</h2>
-<p>こんにちは<%= current_user.name %>さん</p>
+<p>こんにちは<%= current_user.name %>さん
+<div class="col-sm-2">
+<%= link_to "本日分を入力", new_work_path(:date => Date.today.to_s), { :class => "btn btn-primary btn-block" } %>
+</div></p>
 <%= month_calendar do |date| %>
   <% dayworks = @works.where("date": date.to_s ) %>
   <% sum_time = 0 %>
   <% dayworks.each do |daywork| %>
+  
   <% sum_time += daywork.work_time %>
   <% end %>
   <% if sum_time.to_f >= 8 %>

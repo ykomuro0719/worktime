@@ -38,7 +38,7 @@ class Admin::RequestsController < Admin::ApplicationController
         @requests = Request.all
     end
     def request_params
-      params.require(:request).permit(:requesttitle, :requeststatus , :id )
+      params.require(:request).permit(:requesttitle, :requeststatus , :requeststartdate, :requestenddate, :id )
     end
     
     

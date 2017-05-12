@@ -11,6 +11,7 @@ $(document).on 'change', '#work_task_id', ->
     }
   )
 
+
 $(document).on 'change', '#work_task_id', ->
   $.ajax(
     type: 'GET'

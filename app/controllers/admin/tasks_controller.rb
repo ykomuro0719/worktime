@@ -41,7 +41,7 @@ class Admin::TasksController < Admin::ApplicationController
         @child2Tasks = Child2task.all
     end 
     def task_params
-        params.require(:task).permit(:tasktitle, :taskstatus, 
+        params.require(:task).permit(:tasktitle, :taskstatus, :taskstartdate, :taskenddate,
         selectchild1s_attributes: [:task_id, :child1task_id, :_destroy, :id],
         selectrequests_attributes: [:task_id, :request_id, :_destroy, :id])
             # これは独特な書き方ですが、このように子要素のstrong parameterを書くことで、自動で子要素に親要素のidもふられます。

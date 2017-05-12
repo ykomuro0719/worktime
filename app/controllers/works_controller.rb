@@ -11,6 +11,10 @@ class WorksController < ApplicationController
     @dt = params[:date]
     @works = Work.where("date":@dt).where(user_id: current_user.id)
     @allworks = Work.where("date":@dt).where(user_id: current_user.id)
+    @validtasks = @tasks.where("taskstartdate <= ?" ,@dt ).where("taskenddate >= ?",@dt )
+    @validchild1tasks = @child1tasks.where("child1startdate <= ?" ,@dt ).where("child1enddate >= ?",@dt )
+    @validchild2tasks = @child2tasks.where("child2startdate <= ?" ,@dt ).where("child2enddate >= ?",@dt )
+    @validrequests = @requests.where("requeststartdate <= ?" ,@dt ).where("requestenddate >= ?",@dt )
     end
 
     def create
@@ -36,7 +40,7 @@ class WorksController < ApplicationController
     end
 
     def show
-
+    
         @works = Work.where(date: params[:date]).where(user_id: current_user.id)  
         @dt = params[:date]
     end
@@ -46,19 +50,21 @@ class WorksController < ApplicationController
         @work.destroy
         redirect_to :back
     end
-
+    
     def getchild1
-        @child1tasks = Child1task.includes(:tasks).where(tasks: {id: params[:task_id]})
+        
+        @validchild1tasks = Task.joins(:child1tasks).includes(:child1tasks).where(tasks: {id: params[:task_id]})
         
     end
     
     def getchild2
-        @child2tasks = Child2task.includes(:child1tasks).where(child1tasks: {id: params[:child1task_id]})
-      
+        
+        @validchild2tasks = Child1task.joins(:child2tasks).includes(:child2tasks).where(child1tasks: {id: params[:child1task_id]})
     end
     
     def getrequest
-        @requests = Request.includes(:tasks).where(tasks: {id: params[:task_id]})
+        
+        @validrequests = Task.joins(:requests).includes(:requests).where(tasks: {id: params[:task_id]})
 
     end
 

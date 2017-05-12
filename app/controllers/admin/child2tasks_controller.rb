@@ -39,7 +39,7 @@ class Admin::Child2tasksController < Admin::ApplicationController
         @child2tasks = Child2task.all
     end
     def child2task_params
-      params.require(:child2task).permit(:child2title, :child2status )
+      params.require(:child2task).permit(:child2title, :child2status, :child2startdate, :child2enddate )
     end
     
 end
