@@ -1,4 +1,4 @@
-<div class="container">
+
 <table class="table table-striped table-bordered">
 　<tr class="row">
   <th class="col-sm-3">仕事内容</th>
@@ -44,7 +44,7 @@
       </td>
     <td class="col-sm-2">
     <%= link_to "編集", edit_work_path(work), class: "btn-default" "btn-xs" %>
-    <%= link_to "削除", work_path(work), method: :delete, class: "btn-danger" "btn-xs" %>
+    <%= link_to "削除", work_path(work), method: :delete, remote: true , class: "btn-danger" "btn-xs" %>
     </td>
     
     <% @sum_time = @sum_time + work.work_time.to_f %>
@@ -58,4 +58,4 @@
 　    <td class="col-sm-1"><%= @sum_time %></td>
 　    <td class="col-sm-2"></td>
 　</tr>
-</table></div>
+</table>

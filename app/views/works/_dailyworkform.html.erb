@@ -1,0 +1,7 @@
+<%= form_for @dailywork do |f| %>
+<div class="form-group">
+        <%= f.label :work_time, "時間" , :class => "control-label" %>
+        <%= f.select :work_time, time_list, { :prompt => "選択"}, :class =>"form-control" %>
+        </div>
+        <%= f.submit "送信" , :class => "form-control btn-default" %>
+<% end %>

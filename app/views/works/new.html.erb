@@ -1,9 +1,13 @@
 <%= render "shared/logoheader" %>
 <h2>入力ページ</h2>
 <%= @dt %>
-
+<#%= render "dailyworkform" %>
 <%= render "form" %>
+
+<div class="container" id="summaryform" >
 <%= render "summaryform", {:action => "show"} %>
+</div>
+
 <div class="col-sm-2">
 <%= link_to "戻る", root_path ,{:class => "btn btn-primary btn-block"} %>
 </div>

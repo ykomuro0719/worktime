@@ -1,5 +1,5 @@
-<%= form_for(@work) do |f| %>
-        <div class="form-inline">
+<%= form_for @work, remote: true do |f| %>
+        <div class="form-inline" id="work-form">
         <div class="form-group">
         <%= f.label :task_id, "仕事内容",:class => "control-label" %>
         <%= f.collection_select :task_id, @validtasks.where(taskstatus: true), :id, :tasktitle, { :prompt => "選択"}, :class =>"form-control" %>
@@ -27,10 +27,18 @@
         <%= f.select :work_time, time_list, { :prompt => "選択"}, :class =>"form-control" %>
         </div>
         
+        <%= f.submit "送信" , :class => "form-control btn-default" %>
+        
+        </div>        
+        <div class="form-group">
+        <%= f.label :comment, "備考",:class => "control-label" %>
+        <%= f.text_area :comment ,:class => "form-control"%>
+        </div>
+
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :date, :value => @dt %>
         
-        <%= f.submit "送信", :class => "form-control btn-default" %>
+        
                 
 <% end %>
-</div>
+

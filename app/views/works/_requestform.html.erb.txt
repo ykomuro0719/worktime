@@ -1,6 +1,0 @@
-
-        <% @work = Work.new unless @work %>
-        <%= nested_form_for(@work) do |f| %>
-        <%= f.label :request_id, "要求元" ,:class => "control-label" %>
-        <%= f.collection_select :request_id, @requests, :id, :requesttitle,  { :prompt => "選択してください"}, :class =>"form-control" %>
-        <% end %>

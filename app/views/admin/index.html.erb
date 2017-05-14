@@ -1,0 +1,41 @@
+<h1>管理者ページ</h1>
+
+<% @users.each do |user| %>
+<table class="table-bordered">
+  <tr class="row">
+    <th class="col-sm-1">ID</th>
+    <th class="col-sm-2">名前</th>
+    <th class="col-sm-1"><%= @dt6 %></th>
+    <th class="col-sm-1"><%= @dt5 %></th>
+    <th class="col-sm-1"><%= @dt4 %></th>
+    <th class="col-sm-1"><%= @dt3 %></th>
+    <th class="col-sm-1"><%= @dt2 %></th>
+    <th class="col-sm-1"><%= @dt1 %></th>
+    <th class="col-sm-1"><%= @dt0 %></th>
+  </tr>
+  <tr>
+    <td class="col-sm-1"><%= user.id %></td>
+    <td class="col-sm-2"><%= user.name %></td>
+    <td class="col-sm-1">
+    <% sum_time = 0 %>  
+    <%  if @works.where(user_id: user.id ).where(date: Date.today - 6).blank? %>
+    <% elsif @works.where(user_id: user.id ).where(date: Date.today - 6).each do |work| %>
+      <% sum_time = sum_time + work.worktime %>
+      <% end %>
+      <% sum_time < 8 %>
+        △
+    <% else %>
+    ○
+    <% end %>
+    </td>
+    <td class="col-sm-1"></td>
+    <td class="col-sm-1"></td>
+    <td class="col-sm-1"></td>
+    <td class="col-sm-1"></td>
+    <td class="col-sm-1"></td>
+    <td class="col-sm-1"></td>
+  </tr>
+
+<% end %>
+</table>
+<%= link_to "一般ページ", root_path %>

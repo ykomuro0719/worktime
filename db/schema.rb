@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511023447) do
+ActiveRecord::Schema.define(version: 20170513010352) do
 
   create_table "child1tasks", force: :cascade do |t|
     t.string  "child1title",                     null: false
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20170511023447) do
     t.boolean "child2status",    default: false, null: false
     t.date    "child2startdate"
     t.date    "child2enddate"
+  end
+
+  create_table "dailyworks", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.date     "date",       null: false
+    t.time     "workstart",  null: false
+    t.time     "workend",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "installs", force: :cascade do |t|
@@ -103,6 +112,7 @@ ActiveRecord::Schema.define(version: 20170511023447) do
     t.integer  "child1task_id"
     t.integer  "child2task_id"
     t.integer  "request_id"
+    t.text     "comment"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
