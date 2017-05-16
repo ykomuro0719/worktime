@@ -3,20 +3,9 @@
 <%= f.label :child1title, "分類1",:class => "control-label" %>
 <%= f.text_field :child1title ,:class => "form-control"%>
 </div>
-
-<div class="form-group">
-<%= f.label :child1startdate,"利用開始日" ,:class => "control-label" %>
-<%= f.date_select :child1startdate, {:end_year => Time.now.year+10}, :class => 'form-control' %>
-</div>
-
-<div class="form-group">
-<%= f.label :child1enddate,"利用終了日" ,:class => "control-label" %>
-<%= f.date_select :child1enddate, {:end_year => Time.now.year+10}, :class => 'form-control' %>
-</div>
-
 <div class="form-group">
 <%= f.label :child1status,"有効",:class => "control-label" %>
-<%= f.check_box :child1status, { }, "true", "false" %>
+<%= f.check_box :child1status, { }, true, false %>
 </div>
 
 <%= f.fields_for :selectchild2s do |b| %>

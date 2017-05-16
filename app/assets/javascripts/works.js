@@ -35,3 +35,24 @@ $(document).on('change', '#work_task_id', function get_child1() {
         }); 
     });
 });
+
+//workstart,workend
+$(document).on('change', '#workstart', function get_workstart() {
+    $.ajax({
+        type: 'GET',
+        url: '/works/getworkstart',
+        data: {
+            workstart: $(this).has('option:selected').val()
+        }
+    });
+});
+
+$(document).on('change', '#workend', function get_workend() {
+    $.ajax({
+        type: 'GET',
+        url: '/works/getworkend',
+        data: {
+            workend: $(this).has('option:selected').val()
+        }
+    });
+});

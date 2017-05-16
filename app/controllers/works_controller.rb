@@ -1,13 +1,11 @@
 class WorksController < ApplicationController
     before_action :authenticate_user! ,:initial
-    if @@dt = present?
-    end
-    @@validchild1tasks = Child1task.none
-    @@validchild2tasks = Child2task.none
-    @@validrequests = Request.none
+    before_action :set_dailywork1, only: [:new, :show, :edit, :create]
+    before_action :set_dailywork2, only: [:new ]
+    @@dt = nil
     
     def index
-    @works = Work.where(user_id: current_user.id)
+        @works = Work.where(user_id: current_user.id)
     
     end
     
@@ -19,23 +17,15 @@ class WorksController < ApplicationController
         @works = Work.where("date":@dt).where(user_id: current_user.id)
         @allworks = Work.where("date":@dt).where(user_id: current_user.id)
         @validtasks = @tasks.where("taskstartdate <= ?" ,@dt ).where("taskenddate >= ?",@dt )
-        
+        #binding.pry
         @validchild1tasks = Child1task.none
         @validchild2tasks = Child2task.none
         @validrequests = Request.none
         
-        @@validchild1tasks = @child1tasks.where("child1startdate <= ?" ,@dt ).where("child1enddate >= ?",@dt )
-        @@validchild2tasks = @child2tasks.where("child2startdate <= ?" ,@dt ).where("child2enddate >= ?",@dt )
-        @@validrequests = @requests.where("requeststartdate <= ?" ,@dt ).where("requestenddate >= ?",@dt )
+        #@@validchild1tasks = @child1tasks.where("child1startdate <= ?" ,@dt ).where("child1enddate >= ?",@dt )
+        #@@validchild2tasks = @child2tasks.where("child2startdate <= ?" ,@dt ).where("child2enddate >= ?",@dt )
+        #@@validrequests = @requests.where("requeststartdate <= ?" ,@dt ).where("requestenddate >= ?",@dt )
         
-        @dailywork = Dailywork.where("date": params[:date]).where("user_id": current_user.id)
-        if @dailywork.blank? then
-            workstart = "10:00"
-            workend  = "19:00"
-            @dailywork = Dailywork.create("date": params[:date], "user_id": current_user.id, "workstart": workstart , "workend": workend )
-            @dailywork.save
-            
-        end
     end
 
     def create
@@ -43,12 +33,12 @@ class WorksController < ApplicationController
         @work = Work.create(work_params)
         @work.save
         @works = Work.where("date": @work.date).where(user_id: current_user.id)
-        
+        #binding.pry
     end
 
     def edit
         @work = Work.find(params[:id])
-        @dt = @work.date
+        @@dt = @dt = @work.date
         @validtasks = @tasks.where("taskstartdate <= ?" ,@dt ).where("taskenddate >= ?",@dt )
         @validchild1tasks = @child1tasks.where("child1startdate <= ?" ,@dt ).where("child1enddate >= ?",@dt )
         @validchild2tasks = @child2tasks.where("child2startdate <= ?" ,@dt ).where("child2enddate >= ?",@dt )
@@ -66,9 +56,9 @@ class WorksController < ApplicationController
     end
 
     def show
-    
-        @works = Work.where(date: params[:date]).where(user_id: current_user.id)  
-        @dt = params[:date]
+        
+        @works = Work.where(date: work_params[:date]).where(user_id: current_user.id)  
+        @dt = work_params[:date]
     end
 
     def destroy
@@ -103,13 +93,28 @@ class WorksController < ApplicationController
         .where("requestenddate >= ?",@@dt )
     end
 
+    def getworkstart
 
+        @dailywork = Dailywork.find_by(date: @@dt)
+        @dailywork.update(workstart: params[:workstart])
+        render :nothing => true
+
+    end
+    def getworkend
+        @dailywork = Dailywork.find_by(date: @@dt)
+        @dailywork.update(workend: params[:workend])
+        render :nothing => true
+    end
 
      private
     def work_params
       params.require(:work).permit(:date, :comment, :work_time, :user_id, :task_id,
                                      :child1task_id, :child2task_id, :request_id, :id )
     end
+    def dailywork_params
+      params.require(:dailywork).permit(:date, :workstart, :workend, :user_id, :id )
+    end
+    
     def initial
         @tasks = Task.all
         @users = User.all
@@ -118,6 +123,28 @@ class WorksController < ApplicationController
         @requests = Request.all
         @sum_time = 0
     end
+    def set_dailywork1
+        if @@dt.blank? && params[:date].present?
+            @@dt = params[:date]
+        end
+        
+         
+        if Dailywork.find_by("date": params[:date]).blank?
+            @workstart = 10.0
+            @workend  = 19.0
+        else
+            @workstart = Dailywork.find_by("date": params[:date]).workstart
+            @workend = Dailywork.find_by("date": params[:date]).workend
+        end
+        binding.pry
+        @daytime = @workend - @workstart
+    end
     
+    def set_dailywork2    
+        if  Dailywork.find_by("date": params[:date], "user_id": current_user.id).blank?
+            @dailywork = Dailywork.create("date": params[:date], "user_id": current_user.id, "workstart": @workstart , "workend": @workend )
+            @dailywork.save
+        end
+    end
   
 end

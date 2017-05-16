@@ -34,6 +34,8 @@ gem "simple_calendar", "~> 2.0"
 
 gem 'composite_primary_keys'
 gem "nested_form"
+gem 'tod'
+gem 'ruby-duration'
 
 
 # Debug Tools

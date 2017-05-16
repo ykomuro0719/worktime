@@ -15,11 +15,13 @@ Rails.application.routes.draw do
         get :getchild1
         get :getchild2
         get :getrequest
+        get :getworkstart
+        get :getworkend
       end
     end
   resources "works" , only: [:new, :create, :edit, :update, :destroy]
   resources "works", param: :date, :only => [:show]
-  resources "admin" , only: [:index]
+
     namespace :admin do
      resources :tasks, only: [:index, :new, :create, :show, :edit, :update, :destroy]
      resources :requests, only: [:index, :new, :create, :edit, :update, :destroy]

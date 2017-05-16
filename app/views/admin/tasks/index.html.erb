@@ -10,30 +10,26 @@
 <div class="container">
 <table class="table-striped table-bordered">
     <tr class="row">
-        <th class="col-sm-2">大分類</th>
-        <th class="col-sm-2">分類1</th>
-        <th class="col-sm-2">要求元</th>
-        <th class="col-sm-2">利用開始日</th>
-        <th class="col-sm-2">利用終了日</th>
-        <th class="col-sm-2"></th>
+        <th class="col-sm-3">大分類</th>
+        <th class="col-sm-3">分類1</th>
+        <th class="col-sm-3">要求元</th>
+        <th class="col-sm-3"></th>
     </tr>
 <% @tasks.each do |task| %>
     <tr class="row">
-    <td class="col-sm-2"><%= task.tasktitle %></td>
-    <td class="col-sm-2">
+    <td class="col-sm-3"><%= task.tasktitle %></td>
+    <td class="col-sm-3">
         <% task.child1tasks.each do |child1task| %>
         <div class ="col-sm-12"><%= child1task.child1title %></div>
         <% end %>
     </td>
-    <td class="col-sm-2">
+    <td class="col-sm-3">
         <% task.requests.each do |request| %>
         <div class ="col-sm-12"><%= request.requesttitle %></div>
         <% end %>
     </td>    
-    <td class="col-sm-2"><%= task.taskstartdate %></td>
-    <td class="col-sm-2"><%= task.taskenddate %></td>    
-    
-    <td class="col-sm-2"><%= link_to "編集", edit_admin_task_path(task) %>
+        
+    <td class="col-sm-3"><%= link_to "編集", edit_admin_task_path(task) %>
     <%= link_to "削除", admin_task_path(task.id), method: :delete, 
     :data => {:confirm => '本当に削除しますか？入力済み工数がある場合紐づく工数画面にてエラーが発生します'}  %></td>
    </tr>

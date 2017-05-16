@@ -3,20 +3,9 @@
 <%= f.label :requesttitle, "要求元",:class => "control-label" %>
 <%= f.text_field :requesttitle ,:class => "form-control" %>
 </div>
-
-<div class="form-group">
-<%= f.label :requeststartdate,"利用開始日" ,:class => "control-label" %>
-<%= f.date_select :requeststartdate, {:end_year => Time.now.year+10}, :class => 'form-control' %>
-</div>
-
-<div class="form-group">
-<%= f.label :requestenddate,"利用終了日" ,:class => "control-label" %>
-<%= f.date_select :requestenddate,{:end_year => Time.now.year+10 }, :class => 'form-control' %>
-</div>
-
 <div class="form-group">
 <%= f.label :requeststatus,"有効" ,:class => "control-label"%>
-<%= f.check_box :requeststatus, { }, "true", "false" %>        
+<%= f.check_box :requeststatus, { }, true, false %>        
 </div>
 <%= f.submit "送信", :class => "form-control btn-default" %>
 </div>

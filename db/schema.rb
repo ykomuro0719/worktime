@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20170513010352) do
   create_table "dailyworks", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.date     "date",       null: false
-    t.time     "workstart",  null: false
-    t.time     "workend",    null: false
+    t.float    "workstart",  null: false
+    t.float    "workend",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

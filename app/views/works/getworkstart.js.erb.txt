@@ -1,0 +1,1 @@
+$('#work_request_id').html('<%= j(options_for_select(@validrequests.pluck(:requesttitle, :request_id))) %>');
