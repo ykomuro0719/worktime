@@ -97,13 +97,14 @@ class WorksController < ApplicationController
 
         @dailywork = Dailywork.find_by(date: @@dt)
         @dailywork.update(workstart: params[:workstart])
-        render :nothing => true
+        
+        #render :nothing => true
 
     end
     def getworkend
         @dailywork = Dailywork.find_by(date: @@dt)
         @dailywork.update(workend: params[:workend])
-        render :nothing => true
+        #render :nothing => true
     end
 
      private
@@ -136,7 +137,7 @@ class WorksController < ApplicationController
             @workstart = Dailywork.find_by("date": params[:date]).workstart
             @workend = Dailywork.find_by("date": params[:date]).workend
         end
-        binding.pry
+
         @daytime = @workend - @workstart
     end
     

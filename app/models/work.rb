@@ -27,5 +27,11 @@ class Work < ActiveRecord::Base
   belongs_to :child1task
   belongs_to :child2task
   belongs_to :request
+  
+  validates :work_time, presence: true
+  validates :comment,      length: { maximum: 200 } 
+  
+  
+  
 end
  

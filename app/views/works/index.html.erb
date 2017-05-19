@@ -6,14 +6,14 @@
 </div></p>
 <%= month_calendar do |date| %>
   <% dayworks = @works.where("date": date.to_s ) %>
-  <% sum_time = 0 %>
+  <% @sum_time = 0 %>
   <% dayworks.each do |daywork| %>
   
-  <% sum_time += daywork.work_time %>
+  <% @sum_time += daywork.work_time %>
   <% end %>
-  <% if sum_time.to_f >= 8 %>
+  <% if @sum_time.to_f >= 8 %>
       <div class="finished" >
-  <% elsif sum_time.to_f > 0 %>
+  <% elsif @sum_time.to_f > 0 %>
        <div class="doing" >
   <% else %>
       <div class="" >
