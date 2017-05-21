@@ -1,11 +1,14 @@
 class WorksController < ApplicationController
     before_action :authenticate_user! ,:initial
-    before_action :set_dailywork1, only: [:new, :show, :edit, :create]
+    before_action :set_dailywork1, only: [:new, :show, :edit, :create, :destroy]
     before_action :set_dailywork2, only: [:new ]
+    after_action :set_daytime, only: [:create, :update, :destroy ]
     @@dt = nil
-    
+
     def index
         @works = Work.where(user_id: current_user.id)
+        @dailyworks = Dailywork.where(user_id: current_user.id)
+        
     
     end
     
@@ -16,15 +19,18 @@ class WorksController < ApplicationController
         @@dt = @dt
         @works = Work.where("date":@dt).where(user_id: current_user.id)
         @allworks = Work.where("date":@dt).where(user_id: current_user.id)
-        @validtasks = @tasks.where("taskstartdate <= ?" ,@dt ).where("taskenddate >= ?",@dt )
-        #binding.pry
+        
+
+        @validtasks = Task.joins(:groups).includes(:groups)
+        .where("taskstartdate <= ?" ,@dt ).where("taskenddate >= ?",@dt )
+        
+        @grouptasks = @validtasks.where(groups:{id: current_user.group1_id} )
+        .or(@validtasks.where(groups:{id: current_user.group2_id} ))
+        .or(@validtasks.where(groups:{id: current_user.group3_id} ))  
+        
         @validchild1tasks = Child1task.none
         @validchild2tasks = Child2task.none
         @validrequests = Request.none
-        
-        #@@validchild1tasks = @child1tasks.where("child1startdate <= ?" ,@dt ).where("child1enddate >= ?",@dt )
-        #@@validchild2tasks = @child2tasks.where("child2startdate <= ?" ,@dt ).where("child2enddate >= ?",@dt )
-        #@@validrequests = @requests.where("requeststartdate <= ?" ,@dt ).where("requestenddate >= ?",@dt )
         
     end
 
@@ -34,12 +40,24 @@ class WorksController < ApplicationController
         @work.save
         @works = Work.where("date": @work.date).where(user_id: current_user.id)
         #binding.pry
+        
+        @workstart = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).workstart
+        @workend = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).workend
+        @daytime = @workend - @workstart
     end
 
     def edit
         @work = Work.find(params[:id])
         @@dt = @dt = @work.date
-        @validtasks = @tasks.where("taskstartdate <= ?" ,@dt ).where("taskenddate >= ?",@dt )
+        
+        @validtasks = Task.joins(:groups).includes(:groups)
+        .where("taskstartdate <= ?" ,@dt ).where("taskenddate >= ?",@dt )
+        
+        @grouptasks = @validtasks.where(groups:{id: current_user.group1_id} )
+        .or(@validtasks.where(groups:{id: current_user.group2_id} ))
+        .or(@validtasks.where(groups:{id: current_user.group3_id} ))
+        
+        
         @validchild1tasks = @child1tasks.where("child1startdate <= ?" ,@dt ).where("child1enddate >= ?",@dt )
         @validchild2tasks = @child2tasks.where("child2startdate <= ?" ,@dt ).where("child2enddate >= ?",@dt )
         @validrequests = @requests.where("requeststartdate <= ?" ,@dt ).where("requestenddate >= ?",@dt )
@@ -50,7 +68,7 @@ class WorksController < ApplicationController
     def update
         @work = Work.find(params[:id])
         @work.update(work_params)
-        dt = @work.date
+        #dt = @work.date
         @works = Work.where("date": @work.date).where(user_id: current_user.id)
 
     end
@@ -94,17 +112,26 @@ class WorksController < ApplicationController
     end
 
     def getworkstart
-
-        @dailywork = Dailywork.find_by(date: @@dt)
+        
+        @dailywork = Dailywork.where(user_id: current_user.id).find_by(date: @@dt)
         @dailywork.update(workstart: params[:workstart])
         
         #render :nothing => true
 
     end
     def getworkend
-        @dailywork = Dailywork.find_by(date: @@dt)
+        
+        @dailywork = Dailywork.where(user_id: current_user.id).find_by(date: @@dt)
         @dailywork.update(workend: params[:workend])
         #render :nothing => true
+    end
+    
+    def getbreaktime1
+        
+        @dailywork = Dailywork.where(user_id: current_user.id).find_by(date: @@dt)
+        @dailywork.update(breaktime1: params[:breaktime1])
+        render :nothing => true
+        
     end
 
      private
@@ -113,7 +140,7 @@ class WorksController < ApplicationController
                                      :child1task_id, :child2task_id, :request_id, :id )
     end
     def dailywork_params
-      params.require(:dailywork).permit(:date, :workstart, :workend, :user_id, :id )
+      params.require(:dailywork).permit(:date, :workstart, :workend, :breaktime1, :user_id, :id )
     end
     
     def initial
@@ -129,23 +156,35 @@ class WorksController < ApplicationController
             @@dt = params[:date]
         end
         
-         
-        if Dailywork.find_by("date": params[:date]).blank?
+        
+        if Dailywork.where(user_id: current_user.id).find_by("date": params[:date]).blank?
             @workstart = 10.0
             @workend  = 19.0
+            @breaktime1 = 1.0
+            
         else
-            @workstart = Dailywork.find_by("date": params[:date]).workstart
-            @workend = Dailywork.find_by("date": params[:date]).workend
+            @workstart = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).workstart
+            @workend = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).workend
+            @breaktime1 = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).breaktime1
         end
+        
 
         @daytime = @workend - @workstart
     end
     
     def set_dailywork2    
         if  Dailywork.find_by("date": params[:date], "user_id": current_user.id).blank?
-            @dailywork = Dailywork.create("date": params[:date], "user_id": current_user.id, "workstart": @workstart , "workend": @workend )
+            @dailywork = Dailywork.create("date": params[:date], "user_id": current_user.id, "workstart": @workstart , "workend": @workend,"breaktime1": @breaktime1 )
             @dailywork.save
         end
+    end
+    
+    def set_daytime
+        @workstart = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).workstart
+        @workend = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).workend
+        @breaktime1 = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).breaktime1
+        
+        @daytime = @workend - @workstart
     end
   
 end

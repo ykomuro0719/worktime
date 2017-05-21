@@ -1,0 +1,5 @@
+<div class="form-group">
+    <%= b.label :group_id, "グループ" ,:class => "control-label" %>
+    <%= b.collection_select :group_id, Group.where(:groupstatus => true), :id, :groupname, :class =>"form-control" %>
+    <%= b.link_to_remove "Remove this" %>
+  </div>

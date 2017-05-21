@@ -18,6 +18,10 @@ class Task < ActiveRecord::Base
     accepts_nested_attributes_for :selectchild1s, allow_destroy: true
     accepts_nested_attributes_for :selectrequests, allow_destroy: true
     
+    has_many :grouptasks
+    has_many :groups, through: :grouptasks
+    
+    
     validates :tasktitle, uniqueness: true, presence: true
 end
  

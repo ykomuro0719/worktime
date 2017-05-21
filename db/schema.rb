@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170513010352) do
+ActiveRecord::Schema.define(version: 20170521073352) do
 
   create_table "child1tasks", force: :cascade do |t|
     t.string  "child1title",                     null: false
@@ -34,6 +34,23 @@ ActiveRecord::Schema.define(version: 20170513010352) do
     t.float    "workend",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "breaktime1"
+    t.float    "breaktime2"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "groupname",                      null: false
+    t.date     "groupstartdate"
+    t.date     "groupenddate"
+    t.boolean  "groupstatus",    default: false, null: false
+    t.text     "groupdetail"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "grouptasks", force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "task_id",  null: false
   end
 
   create_table "installs", force: :cascade do |t|
@@ -99,6 +116,9 @@ ActiveRecord::Schema.define(version: 20170513010352) do
     t.datetime "updated_at",                             null: false
     t.boolean  "admin",                  default: false, null: false
     t.integer  "eid"
+    t.integer  "group1_id"
+    t.integer  "group2_id"
+    t.integer  "group3_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

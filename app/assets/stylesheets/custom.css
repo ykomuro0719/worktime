@@ -65,7 +65,12 @@
     padding: 0;
     margin: 0;
 }
-
+.over{
+    background-color: #ffa07a;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+}
 .wday-6{
     background:rgba(224,224,255,0.3);
 
@@ -75,3 +80,11 @@
 
 }
 
+.status-true{
+    background:rgba(224,224,255,0.3);
+
+}
+.status-false{
+    background:rgba(245,222,179,0.3);
+
+}

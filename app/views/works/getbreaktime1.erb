@@ -1,3 +1,2 @@
 
-$('#workend').html('<%= j(options_for_select(time_list.select { |k,v| v.to_f > @dailywork.workstart.to_f } ,{ selected: @dailywork.workend.to_f})) %>');
 $('#breaktime1').html('<%= j(options_for_select(time_list.select { |k,v| v.to_f < (@dailywork.workend.to_f - @dailywork.workstart.to_f) } ,{ selected: @dailywork.workend.to_f})) %>');

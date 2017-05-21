@@ -2,31 +2,46 @@
 <% provide(:title, @user.email) %>
 
 <h1>My page (<%= @user.name %>)</h1>
-<%= @current_user.name %>
-<table class="table-striped">
-    <div class = "row"><tr>
-        <div class="col-sm-3"><td>名前</td></div>
-        <div class="col-sm-3"><td><%= @user.name %></td></div>
-    </tr></div>
-    <div class="row"><tr>
-        <div class="col-sm-3"><td>email</td></div>
-        <div class="col-sm-3"><td><%= @user.email %></td></div>
-    </tr></div>
-    <div class="row"><tr>
-        <div class="col-sm-3"><td>社員No</td></div>
-        <div class="col-sm-3"><td><%= @user.eid %></td></div>
-    </tr></div>
-    <div class="row"><tr>
-        <div class="col-sm-3"><td>権限区分</td></div>
-        <div class="col-sm-3"><td>
+
+<table class="table-striped col-sm-6">
+    <tr class="row">
+        <td class="col-sm-3">名前</td>
+        <td class="col-sm-3"><%= @user.name %></td>
+    </tr>
+    <tr class="row">
+        <td class="col-sm-3">email</td>
+        <td  class="col-sm-3"><%= @user.email %></td>
+    </tr>
+    <tr class="row">
+        <td class="col-sm-3">社員No</td>
+        <td class="col-sm-3"><%= @user.eid %></td>
+    </tr>
+    <tr class="row">
+        <td class="col-sm-3">所属グループ1</td>
+        <td class="col-sm-3">
+            <% if @user.group1.present? %>
+            <%= @user.group1.groupname %><br>
+            <% end %>
+            <% if @user.group2.present? %>
+            <%= @user.group2.groupname %><br>
+            <% end %>
+            <% if @user.group3.present? %>
+            <%= @user.group3.groupname %><br>
+            <% end %>
+            </td>
+        
+    </tr>
+
+    <tr class="row">
+        <td class="col-sm-3">権限区分</td>
+        <td class="col-sm-3">
             <% if @user.admin %>
                 管理者
             <% else %>
                 一般
             <% end %>
-            </td></div>
-    </tr></div>
-    
+            </td>
+    </tr>
 </table>
 
 

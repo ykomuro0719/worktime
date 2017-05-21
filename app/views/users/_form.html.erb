@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f|  %>
+<%= nested_form_for(@user) do |f|  %>
   <div class="field">
     <%= f.label :name, "名前" %><br />
     <%= f.text_field :name, autofocus: true %>
@@ -14,7 +14,23 @@
     <%= f.text_field :eid, autofocus: true %>
   </div>
 
-
+　<div class="form-group">
+  <%= f.label :group1_id, "グループ1" ,:class => "control-label" %>
+  <%= f.collection_select :group1_id, @groups.where(groupstatus: true), :id, :groupname,  { :include_blank => "選択"}, :class =>"form-control" %>
+  </div>
+  
+  <div class="form-group">
+  <%= f.label :group2_id, "グループ2" ,:class => "control-label" %>
+  <%= f.collection_select :group2_id, @groups.where(groupstatus: true), :id, :groupname,  { :include_blank => "選択"}, :class =>"form-control" %>
+  </div>
+  
+  <div class="form-group">
+  <%= f.label :group3_id, "グループ3" ,:class => "control-label" %>
+  <%= f.collection_select :group3_id, @groups.where(groupstatus: true), :id, :groupname,  { :include_blank => "選択"}, :class =>"form-control" %>
+  </div>
+　
+　
+　
   <div class="field">
     <%= f.label :password, "パスワード" %>
     <% if @minimum_password_length %>

@@ -36,7 +36,7 @@ $(document).on('change', '#work_task_id', function get_child1() {
     });
 });
 
-//workstart,workend
+//workstart,workend,breaktime1
 $(document).on('change', '#workstart', function get_workstart() {
     $.ajax({
         type: 'GET',
@@ -53,6 +53,16 @@ $(document).on('change', '#workend', function get_workend() {
         url: '/works/getworkend',
         data: {
             workend: $(this).has('option:selected').val()
+        }
+    });
+});
+
+$(document).on('change', '#breaktime1', function get_breaktime1() {
+    $.ajax({
+        type: 'GET',
+        url: '/works/getbreaktime1',
+        data: {
+            breaktime1: $(this).has('option:selected').val()
         }
     });
 });

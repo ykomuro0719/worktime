@@ -6,23 +6,40 @@
 </div></p>
 <%= month_calendar do |date| %>
   <% dayworks = @works.where("date": date.to_s ) %>
-  <% @sum_time = 0 %>
-  <% dayworks.each do |daywork| %>
-  
-  <% @sum_time += daywork.work_time %>
+  <% dailywork = @dailyworks.find_by("date": date.to_s ) %>
+  <% if dailywork.nil? %>
+    <% workstart = 0.0 %>
+    <% workend = 0.0 %>
+    <% breaktime1 = 0.0 %>
+  <% else %>
+    <% workstart = dailywork.workstart %>
+    <% workend = dailywork.workend %>
+    <% breaktime1 = dailywork.breaktime1 %>
   <% end %>
-  <% if @sum_time.to_f >= 8 %>
+
+  <% @sum_time = 0.0 %>
+  <% if dayworks.present? %>
+    <% dayworks.each do |daywork| %>
+      <% @sum_time += daywork.work_time %>
+    <% end %>
+  <% end %>
+  <% if (workend - workstart - breaktime1) == 0  %>
+      <div class="" >
+  
+  <% elsif @sum_time > (workend - workstart - breaktime1)  %>
+      <div class="over" >
+        
+  <% elsif @sum_time == (workend - workstart - breaktime1)  %>
       <div class="finished" >
-  <% elsif @sum_time.to_f > 0 %>
-       <div class="doing" >
+  
+  <% elsif @sum_time > 0 %>
+      <div class="doing" >
+            
   <% else %>
       <div class="" >
   <% end %>
+
   <%= link_to date.mday, new_work_path(:date => date), { :class => "btn-block text-center" } %>
 </div>
 <% end %>
-
-
-
-
 

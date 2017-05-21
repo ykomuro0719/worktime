@@ -1,12 +1,14 @@
 <div class="form-inline">
   <div class="form-group">
-  <%= select_tag 'workstart', options_for_select(time_list, { selected: @workstart.to_f}), :class =>"form-control" %>
+  <%= select_tag 'workstart', options_for_select(time_list.select { |k,v| v.to_f < (@workend.to_f - @breaktime1.to_f) }, { selected: @workstart.to_f}), :class =>"form-control" %>
   </div>
   <div class="form-group">
-  <%= select_tag 'workend', options_for_select(time_list, { selected: @workend.to_f}), :class =>"form-control" %>
+  <%= select_tag 'workend', options_for_select(time_list.select { |k,v| v.to_f > (@breaktime1.to_f + @workstart.to_f) }, { selected: @workend.to_f}), :class =>"form-control" %>
+  </div>
+    <div class="form-group">
+  <%= select_tag 'breaktime1', options_for_select(time_list.select { |k,v| v.to_f < (@workend.to_f - @workstart.to_f) }, { selected: @breaktime1.to_f}), :class =>"form-control" %>
   </div>
 </div>
 
 
-        
   

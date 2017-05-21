@@ -9,6 +9,8 @@
 #  workend    :float            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  breaktime1 :float
+#  breaktime2 :float
 #
 
 class Dailywork < ActiveRecord::Base

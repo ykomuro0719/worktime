@@ -1,16 +1,15 @@
 # == Schema Information
 #
-# Table name: dailyworks
+# Table name: groups
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer          not null
-#  date       :date             not null
-#  workstart  :float            not null
-#  workend    :float            not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  breaktime1 :float
-#  breaktime2 :float
+#  id             :integer          not null, primary key
+#  groupname      :string           not null
+#  groupstartdate :date
+#  groupenddate   :date
+#  groupstatus    :boolean          default("f"), not null
+#  groupdetail    :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

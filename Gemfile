@@ -13,6 +13,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+# Add or queue
+gem 'where-or'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -43,7 +45,6 @@ gem 'awesome_print', require: 'ap'
 gem "better_errors"
 gem 'pry-rails', group: :development
 gem 'quiet_assets', group: :development
-
 gem 'annotate'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

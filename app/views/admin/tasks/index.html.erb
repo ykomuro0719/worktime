@@ -4,32 +4,41 @@
 <%= link_to "要求元", admin_requests_path %>
 
 <%= link_to "ユーザー管理", users_path %>
-
+<%= link_to "グループ管理", admin_groups_path %>
 
 <%= link_to "新規作成", new_admin_task_path %>
 <div class="container">
 <table class="table-striped table-bordered">
     <tr class="row">
-        <th class="col-sm-3">大分類</th>
-        <th class="col-sm-3">分類1</th>
-        <th class="col-sm-3">要求元</th>
-        <th class="col-sm-3"></th>
+        <th class="col-sm-2">大分類</th>
+        <th class="col-sm-2">分類1</th>
+        <th class="col-sm-2">要求元</th>
+        <th class="col-sm-2">利用開始日</th>
+        <th class="col-sm-2">利用終了日</th>
+        <th class="col-sm-1">有効</th>
+        <th class="col-sm-1"></th>
     </tr>
 <% @tasks.each do |task| %>
     <tr class="row">
-    <td class="col-sm-3"><%= task.tasktitle %></td>
-    <td class="col-sm-3">
+    <td class="col-sm-2"><%= task.tasktitle %></td>
+    <td class="col-sm-2">
         <% task.child1tasks.each do |child1task| %>
         <div class ="col-sm-12"><%= child1task.child1title %></div>
         <% end %>
     </td>
-    <td class="col-sm-3">
+    <td class="col-sm-2">
         <% task.requests.each do |request| %>
         <div class ="col-sm-12"><%= request.requesttitle %></div>
         <% end %>
     </td>    
-        
-    <td class="col-sm-3"><%= link_to "編集", edit_admin_task_path(task) %>
+    <td class="col-sm-2"><%= task.taskstartdate %></td>
+    <td class="col-sm-2"><%= task.taskenddate %></td>    
+    <% if task.taskstatus %>
+    <td class="col-sm-1 status-true">○</td>
+    <% else %>
+    <td class="col-sm-1 status-false">×</td>
+    <% end %>
+    <td class="col-sm-1"><%= link_to "編集", edit_admin_task_path(task) %>
     <%= link_to "削除", admin_task_path(task.id), method: :delete, 
     :data => {:confirm => '本当に削除しますか？入力済み工数がある場合紐づく工数画面にてエラーが発生します'}  %></td>
    </tr>

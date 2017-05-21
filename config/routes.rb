@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         get :getrequest
         get :getworkstart
         get :getworkend
+        get :getbreaktime1
       end
     end
   resources "works" , only: [:new, :create, :edit, :update, :destroy]
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
      resources :requests, only: [:index, :new, :create, :edit, :update, :destroy]
      resources :child1tasks, only: [:index, :new, :create, :edit, :update, :destroy]
      resources :child2tasks, only: [:index, :new, :create, :edit, :update, :destroy]
+     resources :groups, only: [:index, :new, :create, :edit, :update, :destroy]
 end
   
   

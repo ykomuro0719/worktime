@@ -5,7 +5,7 @@
 <%= render "form" %>
 
 <div class="container" id="summaryform" >
-<%= render "summaryform", {:action => "show"} %>
+<%= render :partial => "summaryform", :locals =>  { works: @works}, :action => "show" %>
 </div>
 
 <div class="col-sm-2">
