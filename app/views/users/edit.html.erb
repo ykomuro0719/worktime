@@ -1,3 +1,6 @@
 <%= render "shared/logoheader" %>
 <h2><%=@user.name%>編集</h2>
 <%= render "form" %>
+<div class="col-sm-2">
+<%= link_to "戻る", user_path(params[:id]) ,{:class => "btn btn-primary btn-block"} %>
+</div>
