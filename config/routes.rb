@@ -29,6 +29,14 @@ Rails.application.routes.draw do
      resources :child1tasks, only: [:index, :new, :create, :edit, :update, :destroy]
      resources :child2tasks, only: [:index, :new, :create, :edit, :update, :destroy]
      resources :groups, only: [:index, :new, :create, :edit, :update, :destroy]
+     resources :aggregates do
+       collection do
+        post :search
+        get :autocomplete_user_name
+      end
+    end
+    resources :aggregates
+
 end
   
   

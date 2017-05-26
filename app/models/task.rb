@@ -10,6 +10,7 @@
 #
 
 class Task < ActiveRecord::Base
+    
     has_many :works
     has_many :selectchild1s
     has_many :child1tasks, through: :selectchild1s

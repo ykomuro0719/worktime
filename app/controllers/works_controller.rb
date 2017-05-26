@@ -167,9 +167,8 @@ class WorksController < ApplicationController
             @workend = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).workend
             @breaktime1 = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).breaktime1
         end
-        
 
-        @daytime = @workend - @workstart
+        @daytime = @workend - @workstart - @breaktime1
     end
     
     def set_dailywork2    
@@ -184,7 +183,8 @@ class WorksController < ApplicationController
         @workend = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).workend
         @breaktime1 = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).breaktime1
         
-        @daytime = @workend - @workstart
+        @daytime = (@workend - @workstart - @breaktime1)
+
     end
   
 end

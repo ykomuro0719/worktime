@@ -16,9 +16,7 @@
 #
 
 class Work < ActiveRecord::Base
-  #def to_params
-  #  date
-  #end
+
   belongs_to :user
   validates :user_id, presence: true
   belongs_to :task
@@ -30,8 +28,7 @@ class Work < ActiveRecord::Base
   
   validates :work_time, presence: true
   validates :comment,      length: { maximum: 200 } 
-  
-  
-  
+private  
+
 end
  

@@ -16,14 +16,19 @@ gem 'coffee-rails', '~> 4.1.0'
 # Add or queue
 gem 'where-or'
 
+gem 'jquery-turbolinks'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# 検索機能
+gem "ransack"
 
 # Bootstrap
 gem 'bootstrap-sass'
@@ -38,7 +43,12 @@ gem 'composite_primary_keys'
 gem "nested_form"
 gem 'tod'
 gem 'ruby-duration'
+# カレンダー入力サポート
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 
+# オートコンプリート
+gem 'rails4-autocomplete'
 
 # Debug Tools
 gem 'awesome_print', require: 'ap'

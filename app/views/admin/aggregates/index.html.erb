@@ -1,0 +1,84 @@
+<h1>管理画面 Index</h1>
+<%= link_to "大分類", admin_tasks_path %>
+<%= link_to "分類1", admin_child1tasks_path %>
+<%= link_to "分類2", admin_child2tasks_path %>
+<%= link_to "要求元", admin_requests_path %>
+<%= link_to "ユーザー管理", users_path %>
+<%= link_to "グループ管理", admin_groups_path %>
+<%= link_to "新規作成", new_admin_task_path %>
+
+<%= search_form_for @q ,:url => {:action => "index"} do |f| %>
+<div class="container col-sm-4 block-center">
+
+<%= f.label :開始日 ,:class => "control-label"%>
+<div class='input-group datepicker date'>
+<%= f.search_field :works_date_gteq_to_date, class:'form-control datepicker date' %>
+  <span class="input-group-addon">
+     <span class="fa fa-calendar"></span>
+</div>
+
+<%= f.label :終了日 ,:class => "control-label"%>
+<div class='input-group datepicker date'>
+<%= f.search_field :works_date_lteq_to_date, class:'form-control datepicker date' %> 
+  <span class="input-group-addon">
+     <span class="fa fa-calendar"></span>
+</div>
+
+
+<div class="form-group">
+<%= f.label :ユーザー ,:class => "control-label"%>
+<%= f.autocomplete_field :name, autocomplete_user_name_admin_aggregates_path, class:'form-control' %>
+</div>
+
+<div class="form-group">
+<%= f.label :グループ,:class => "control-label" %>
+<%= f.collection_select :group1_id_or_group2_id_or_group3_id_eq, Group.all, :id, :groupname, { :include_blank => "選択"}, :class =>"form-control" %>
+</div>
+
+<%= f.submit "検索" , :class => " btn-default col-sm-2 form-control" %>
+<% end %>
+</div>
+<% if if params[:q].present? %>
+<% if params[:q][:works_date_gteq_to_date].present? && params[:q][:works_date_lteq_to_date].present?  %>
+<table class="table table-striped table-bordered">
+  <tr>
+  <td>日付</td>
+    <% i = @startdate %>
+    <% while i <= @enddate %>
+      <td><%= i %></td>
+      <% i += 1 %>
+    <% end %>
+</tr>
+  <% @users.each do |user| %>
+  <tr>
+  <td><%= user.name %></td>
+    <% i = @startdate %>
+    <% while i <= @enddate %>
+      <% sum_time = 0 %>
+      <% user.works.where(date: i).each do |works| %>
+        <% sum_time += works.work_time %>
+      <% end %>
+      <% if sum_time == 0 %>      
+        <td class=""></td>
+      <% elsif sum_time < 8 %>
+        <td class="doing"><%= sum_time %></td>
+      <% elsif sum_time >= 8 && sum_time < 10 %>
+        <td class="finished"><%= sum_time %></td>
+      <% elsif sum_time >= 10 %>
+        <td class="over"><%= sum_time %></td> 
+      <% else %>
+        <td class=""><%= sum_time %></td>
+      <% end %>
+      
+      <% i += 1 %>
+      
+    <% end %>
+</tr>
+<% end %>
+</table>
+<% end %>
+<% end %>
+<% end %>
+
+
+<%= link_to "一般ページ", root_path %>

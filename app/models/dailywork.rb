@@ -14,5 +14,6 @@
 #
 
 class Dailywork < ActiveRecord::Base
+
   
 end
