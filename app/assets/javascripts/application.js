@@ -17,11 +17,10 @@
 //= require jquery-ui
 //= require autocomplete-rails
 //= require moment
+//= require jquery-ui/widgets/datepicker
 //= require bootstrap-datetimepicker
 //= require_tree .
 //= require bootstrap-sprockets
-
-
 
 $(function(){
   $('.datepicker').datetimepicker({

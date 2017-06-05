@@ -19,4 +19,9 @@ class Child1task < ActiveRecord::Base
     accepts_nested_attributes_for :selectchild2s, allow_destroy: true
      
     validates :child1title, uniqueness: true, presence: true
+    
+    def display_name
+        self.child1title 
+    end
+    
 end

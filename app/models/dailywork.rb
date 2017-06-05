@@ -14,6 +14,8 @@
 #
 
 class Dailywork < ActiveRecord::Base
-
+  belongs_to :user
+  
+  #has_many :groups, through: :user
   
 end

@@ -19,6 +19,7 @@ class Work < ActiveRecord::Base
 
   belongs_to :user
   validates :user_id, presence: true
+  has_many :groups, through: :user
   belongs_to :task
   validates :task_id, presence: true
   

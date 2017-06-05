@@ -7,7 +7,7 @@
 #  taskstatus    :boolean          default("f"), not null
 #  taskstartdate :date
 #  taskenddate   :date
-#
+
 
 class Task < ActiveRecord::Base
     
@@ -19,10 +19,16 @@ class Task < ActiveRecord::Base
     accepts_nested_attributes_for :selectchild1s, allow_destroy: true
     accepts_nested_attributes_for :selectrequests, allow_destroy: true
     
+    belongs_to :user
+    
     has_many :grouptasks
     has_many :groups, through: :grouptasks
     
-    
     validates :tasktitle, uniqueness: true, presence: true
+    
+    def display_name
+        self.tasktitle 
+    end
+    
 end
  

@@ -16,4 +16,9 @@ class Child2task < ActiveRecord::Base
     has_many :child1tasks, through: :selectchild2s
     
     validates :child2title, uniqueness: true, presence: true
+    
+    def display_name
+        self.child2title 
+    end
+    
 end

@@ -17,6 +17,12 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'where-or'
 
 gem 'jquery-turbolinks'
+# 管理画面
+gem 'activeadmin'
+gem "just-datetime-picker"
+gem 'active_admin_importable'
+#gem 'active_bootstrap_skin'
+gem 'active_admin_theme'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

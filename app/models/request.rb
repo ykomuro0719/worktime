@@ -16,4 +16,9 @@ class Request < ActiveRecord::Base
     has_many :tasks, through: :selectrequests
     
     validates :requesttitle, uniqueness: true, presence: true
+        
+    def display_name
+        self.requesttitle 
+    end
+    
 end

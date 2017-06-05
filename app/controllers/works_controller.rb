@@ -70,6 +70,10 @@ class WorksController < ApplicationController
         @work.update(work_params)
         #dt = @work.date
         @works = Work.where("date": @work.date).where(user_id: current_user.id)
+        
+        @workstart = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).workstart
+        @workend = Dailywork.where(user_id: current_user.id).find_by("date": @@dt).workend
+        @daytime = @workend - @workstart
 
     end
 
