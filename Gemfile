@@ -13,15 +13,28 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+# Add or queue
+gem 'where-or'
+
+gem 'jquery-turbolinks'
+# 管理画面
+gem 'activeadmin'
+gem "just-datetime-picker"
+gem 'active_admin_importable'
+#gem 'active_bootstrap_skin'
+gem 'active_admin_theme'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# 検索機能
+gem "ransack"
 
 # Bootstrap
 gem 'bootstrap-sass'
@@ -34,14 +47,20 @@ gem "simple_calendar", "~> 2.0"
 
 gem 'composite_primary_keys'
 gem "nested_form"
+gem 'tod'
+gem 'ruby-duration'
+# カレンダー入力サポート
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 
+# オートコンプリート
+gem 'rails4-autocomplete'
 
 # Debug Tools
 gem 'awesome_print', require: 'ap'
 gem "better_errors"
 gem 'pry-rails', group: :development
 gem 'quiet_assets', group: :development
-
 gem 'annotate'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -55,6 +74,8 @@ gem 'annotate'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  
+  gem 'rails-erd'
 end
 
 group :development do

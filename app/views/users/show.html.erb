@@ -2,32 +2,46 @@
 <% provide(:title, @user.email) %>
 
 <h1>My page (<%= @user.name %>)</h1>
-<%= @current_user.name %>
-<table class="table-striped">
-    <div class = "row"><tr>
-        <div class="col-sm-3"><td>名前</td></div>
-        <div class="col-sm-3"><td><%= @user.name %></td></div>
-    </tr></div>
-    <div class="row"><tr>
-        <div class="col-sm-3"><td>email</td></div>
-        <div class="col-sm-3"><td><%= @user.email %></td></div>
-    </tr></div>
-    <div class="row"><tr>
-        <div class="col-sm-3"><td>社員No</td></div>
-        <div class="col-sm-3"><td><%= @user.eid %></td></div>
-    </tr></div>
-    <div class="row"><tr>
-        <div class="col-sm-3"><td>権限区分</td></div>
-        <div class="col-sm-3"><td>
+<div class="container col-sm-4 block-center">
+    <dl class="panel panel-default">
+        <dt class="panel-heading">名前</dt>
+        <dd class="panel-body"><%= @user.name %></dd>
+    </dl>
+    <dl class="panel panel-default">
+        <dt class="panel-heading">email</dt>
+        <dd class="panel-body"><%= @user.email %></dd>
+    </dl>
+    <dl class="panel panel-default">
+        <dt class="panel-heading">社員No</dt>
+        <dd class="panel-body"><%= @user.eid %></dd>
+    </dl>
+    <dl class="panel panel-default">
+        <dt class="panel-heading">所属グループ1</dt>
+        <dd class="panel-body">
+            <% if @user.group1.present? %>
+            <%= @user.group1.groupname %><br>
+            <% end %>
+            <% if @user.group2.present? %>
+            <%= @user.group2.groupname %><br>
+            <% end %>
+            <% if @user.group3.present? %>
+            <%= @user.group3.groupname %><br>
+            <% end %>
+            </dd>
+        
+    </dl>
+
+    <dl class="panel panel-default">
+        <dt class="panel-heading">権限区分</dt>
+        <dd class="panel-body">
             <% if @user.admin %>
                 管理者
             <% else %>
                 一般
             <% end %>
-            </td></div>
-    </tr></div>
-    
-</table>
+            </dd>
+    </dl>
+</div>
 
 
 <div class="col-sm-2">

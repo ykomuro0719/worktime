@@ -1,25 +1,26 @@
-<%= form_for(@work) do |f| %>
-        <div class="form-inline">
+<%= form_for @work, remote: true do |f| %>
+        <div class="form-inline" id="work-form">
         <div class="form-group">
+
         <%= f.label :task_id, "仕事内容",:class => "control-label" %>
-        <%= f.collection_select :task_id, @tasks.where(taskstatus: true), :id, :tasktitle, { :prompt => "選択"}, :class =>"form-control" %>
+        <%= f.collection_select :task_id, @grouptasks.where(taskstatus: true), :id, :tasktitle, { :prompt => "選択"}, :class =>"form-control" %>
         </div>
         
         <div class="form-group">
         
         <%= f.label :child1task_id, "分類1" ,:class => "control-label" %>
-        <%= f.collection_select :child1task_id, @child1tasks.where(child1status: true), :id, :child1title, { :prompt => "選択"}, :class =>"form-control" %>
+        <%= f.collection_select :child1task_id, @validchild1tasks.where(child1status: true).where("child1startdate <= ?" ,@dt ).where("child1enddate >= ?",@dt ), :id, :child1title, { :prompt => "選択"}, :class =>"form-control" %>
         </div>
         
         <div class="form-group">
         <%= f.label :child2task_id, "分類2" ,:class => "control-label" %>
-        <%= f.collection_select :child2task_id, @child2tasks.where(child2status: true), :id, :child2title, { :prompt => "選択"}, :class =>"form-control" %>
+        <%= f.collection_select :child2task_id, @validchild2tasks.where(child2status: true).where("child2startdate <= ?" ,@dt ).where("child2enddate >= ?",@dt ), :id, :child2title, { :prompt => "選択"}, :class =>"form-control" %>
 
         </div>
         
         <div class="form-group">
         <%= f.label :request_id, "要求元" ,:class => "control-label" %>
-        <%= f.collection_select :request_id, @requests.where(requeststatus: true), :id, :requesttitle,  { :prompt => "選択"}, :class =>"form-control" %>
+        <%= f.collection_select :request_id, @validrequests.where(requeststatus: true).where("requeststartdate <= ?" ,@dt ).where("requestenddate >= ?",@dt ), :id, :requesttitle,  { :prompt => "選択"}, :class =>"form-control" %>
         </div>
         
         <div class="form-group">
@@ -27,10 +28,18 @@
         <%= f.select :work_time, time_list, { :prompt => "選択"}, :class =>"form-control" %>
         </div>
         
+        <%= f.submit "送信" , :class => "form-control btn-default" %>
+        
+        </div>        
+        <div class="form-group">
+        <%= f.label :comment, "備考",:class => "control-label" %>
+        <%= f.text_area :comment ,:class => "form-control"%>
+        </div>
+
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :date, :value => @dt %>
         
-        <%= f.submit "送信", :class => "form-control btn-default" %>
+        
                 
 <% end %>
-</div>
+

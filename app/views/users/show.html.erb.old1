@@ -1,0 +1,50 @@
+<%= render "shared/logoheader" %>
+<% provide(:title, @user.email) %>
+
+<h1>My page (<%= @user.name %>)</h1>
+
+<table class="table-striped col-sm-6">
+    <tr class="row">
+        <td class="col-sm-3">名前</td>
+        <td class="col-sm-3"><%= @user.name %></td>
+    </tr>
+    <tr class="row">
+        <td class="col-sm-3">email</td>
+        <td  class="col-sm-3"><%= @user.email %></td>
+    </tr>
+    <tr class="row">
+        <td class="col-sm-3">社員No</td>
+        <td class="col-sm-3"><%= @user.eid %></td>
+    </tr>
+    <tr class="row">
+        <td class="col-sm-3">所属グループ1</td>
+        <td class="col-sm-3">
+            <% if @user.group1.present? %>
+            <%= @user.group1.groupname %><br>
+            <% end %>
+            <% if @user.group2.present? %>
+            <%= @user.group2.groupname %><br>
+            <% end %>
+            <% if @user.group3.present? %>
+            <%= @user.group3.groupname %><br>
+            <% end %>
+            </td>
+        
+    </tr>
+
+    <tr class="row">
+        <td class="col-sm-3">権限区分</td>
+        <td class="col-sm-3">
+            <% if @user.admin %>
+                管理者
+            <% else %>
+                一般
+            <% end %>
+            </td>
+    </tr>
+</table>
+
+
+<div class="col-sm-2">
+<%= link_to "編集", edit_user_path(params[:id]) ,{:class => "btn btn-primary btn-block"} %>
+</div>

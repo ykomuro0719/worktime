@@ -1,0 +1,32 @@
+<h1>group Index</h1>
+<%= link_to "新規作成", new_admin_group_path %>
+<div class="container">
+<table class="table-bordered table-striped">
+    <tr class="row">
+        <th class="col-sm-2">名称</th>
+        <th class="col-sm-2">詳細</th>
+        <th class="col-sm-2">利用開始日</th>
+        <th class="col-sm-2">利用終了日</th>
+        <th class="col-sm-1">有効</th>
+        <th class="col-sm-2"></th>
+        
+    </tr>
+<% @groups.each do |group| %>
+    <tr class="row">
+        <td class="col-sm-2"><%= group.groupname %></td>
+        <td class="col-sm-2"><%= group.groupdetail %></td>
+        <td class="col-sm-2"><%= group.groupstartdate %></td>
+        <td class="col-sm-2"><%= group.groupenddate %></td>
+        <% if group.groupstatus %>
+            <td class="col-sm-1 status-true">○</td>
+        <% else %>
+            <td class="col-sm-1 status-false">×</td>
+        <% end %>
+        <td class="col-sm-2"><%= link_to "編集", edit_admin_group_path(group) %>
+        <%= link_to "削除", admin_group_path(group.id), method: :delete,
+        :data => {:confirm => '本当に削除しますか？'} %></td>
+   </tr>
+<% end %>
+</table>
+</div>
+<%= link_to "管理者トップ", admin_tasks_path %>

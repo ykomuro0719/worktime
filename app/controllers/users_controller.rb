@@ -18,7 +18,8 @@ class UsersController < ApplicationController
 
     end
     def edit
-
+        @groups = Group.all
+        
     end
     def update
             @user.update_without_current_password(user_params)
@@ -43,9 +44,13 @@ class UsersController < ApplicationController
     
     def user_params
         if current_user.admin  then
-            params.require(:user).permit(:name, :email, :eid, :password, :password_confirmation, :admin)
+            params.require(:user).permit(:name, :email, :eid, :password, :password_confirmation, :admin,
+            :group1_id, :group2_id, :group3_id)
         else
-            params.require(:user).permit(:name, :email, :eid, :password, :password_confirmation)
+            params.require(:user).permit(:name, :email, :eid, :password, :password_confirmation,
+            :group1_id, :group2_id, :group3_id)
         end
     end
 end
+
+

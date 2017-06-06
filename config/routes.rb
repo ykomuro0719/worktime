@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   #devise_for :users
   devise_for :users, controllers: {
     registrations:  "users/registrations",
@@ -15,17 +17,14 @@ Rails.application.routes.draw do
         get :getchild1
         get :getchild2
         get :getrequest
+        get :getworkstart
+        get :getworkend
+        get :getbreaktime1
       end
     end
   resources "works" , only: [:new, :create, :edit, :update, :destroy]
   resources "works", param: :date, :only => [:show]
 
-    namespace :admin do
-     resources :tasks, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-     resources :requests, only: [:index, :new, :create, :edit, :update, :destroy]
-     resources :child1tasks, only: [:index, :new, :create, :edit, :update, :destroy]
-     resources :child2tasks, only: [:index, :new, :create, :edit, :update, :destroy]
-end
   
   
   #get 'works/:date/new' to: 'works#new',as: 'new_work'

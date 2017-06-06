@@ -1,0 +1,103 @@
+ja:
+  activerecord:
+    models:
+      admin_user: 管理者
+      comment: コメント
+      name: 名前
+      work: 仕事
+      task: 大分類
+      child1task: 分類1
+      child2task: 分類2
+      request: 要求元
+      dailywork: 業務時間
+      group: グループ
+      user: ユーザー
+      selectchild1: 分類1
+      selectchild2: 分類2
+      selectrequest: 要求元
+    attributes:
+      admin_user:
+        email: メールアドレス
+        current_sign_in_at: 最新ログイン日時
+        sign_in_count: ログイン回数
+        created_at: 作成日時
+        updated_at: 更新日時
+      user:
+        name: 名前
+        date: 日付
+        created_at: 作成日時
+        updated_at: 更新日時
+        email: メールアドレス
+        encrypted_password: パスワード
+        eid: 社員番号
+        group1_id: グループ1
+        group2_id: グループ2
+        group3_id: グループ3
+      work:
+        user: ユーザー
+        date: 日付
+        work_time: 仕事時間
+        task: 大分類     
+        child1task: 分類1
+        child2task: 詳細
+        request: 要求元
+        comment: コメント    
+        created_at: 作成日時
+        updated_at: 更新日時
+      task:
+        tasktitle: タイトル
+        taskstatus: ステータス
+        taskstartdate: 開始日
+        taskenddate: 終了日
+        created_at: 作成日時
+        updated_at: 更新日時        
+      child1task:
+        child1title: 名前
+        child1status: ステータス
+        child1startdate: 開始日
+        child1enddate: 終了日
+        created_at: 作成日時
+        updated_at: 更新日時
+      child2task:
+        child2title: 名前
+        child2status: ステータス
+        child2startdate: 開始日
+        child2enddate: 終了日
+        created_at: 作成日時
+        updated_at: 更新日時
+      request:
+        requesttitle: 名前
+        requeststatus: ステータス
+        requeststartdate: 開始日
+        requestenddate: 終了日
+        created_at: 作成日時
+        updated_at: 更新日時
+      group:
+        groupname: 名前
+        groupstartdate: 開始日
+        groupenddate: 終了日
+        groupstatus: ステータス
+        groupdetail: 詳細
+        created_at: 作成日時
+        updated_at: 更新日時
+      dailywork:
+        user: ユーザー
+        date: 日付
+        workstart: 開始時刻
+        workend: 終了時刻
+        breaktime1: 休憩1
+        breaktime2: 休憩2
+        created_at: 作成日時
+        updated_at: 更新日時
+
+
+#  id         :integer          not null, primary key
+#  user_id    :integer          not null
+#  date       :date             not null
+#  workstart  :float            not null
+#  workend    :float            not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  breaktime1 :float
+#  breaktime2 :float
+

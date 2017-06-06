@@ -1,0 +1,16 @@
+<h1>管理画面 Index</h1>
+<%= link_to "大分類", admin_tasks_path %>
+<%= link_to "分類1", admin_child1tasks_path %>
+<%= link_to "分類2", admin_child2tasks_path %>
+<%= link_to "要求元", admin_requests_path %>
+<%= link_to "ユーザー管理", users_path %>
+<%= link_to "グループ管理", admin_groups_path %>
+<%= link_to "新規作成", new_admin_task_path %>
+
+<% @works.each do |work| %>
+<%= work.date %>
+<%= work.task.tasktitle %>
+<%= work.work_time %>
+<% end %>
+
+<%= link_to "一般ページ", root_path %>

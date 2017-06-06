@@ -40,7 +40,7 @@ class Admin::Child1tasksController < Admin::ApplicationController
         @child2tasks = Child2task.all
     end
     def child1task_params
-      params.require(:child1task).permit(:child1title, :child1status, 
+      params.require(:child1task).permit(:child1title, :child1status, :child1startdate, :child1enddate,
         selectchild2s_attributes: [:id, :task_id, :child2task_id, :_destroy]
       )
     end

@@ -1,4 +1,4 @@
-<div class="container">
+
 <table class="table table-striped table-bordered">
 　<tr class="row">
   <th class="col-sm-3">仕事内容</th>
@@ -12,25 +12,51 @@
 <% @works.each do |work| %>
 
 　<tr class="row">
-    <td class="col-sm-3"><%= work.task.tasktitle %></td>
-    <td class="col-sm-2"><%= work.child1task.child1title %></td>
-    <td class="col-sm-2"><%= work.child2task.child2title %></td>
-    <td class="col-sm-2"><%= work.request.requesttitle %></td>
-    <td class="col-sm-1"><%= work.work_time %></td>
+    <td class="col-sm-3">
+      <% if work.task.present? then %>
+      <%= work.task.tasktitle %>
+      <% else %>
+      <% end %>
+      </td>
+    <td class="col-sm-2">
+      <% if work.child1task.present? then %>
+      <%= work.child1task.child1title %>
+      <% else %>
+      <% end %></td>
+    
+    <td class="col-sm-2">
+      <% if work.child2task.present? then %>
+      <%= work.child2task.child2title %>
+      <% else %>
+      <% end %>
+      </td>
+      
+    <td class="col-sm-2">
+      <% if work.request.present? then %>
+      <%= work.request.requesttitle %>
+      <% else %>
+      <% end %></td>
+    <td class="col-sm-1">
+      <% if work.work_time.present? then %>
+      <%= work.work_time %>
+      <% else %>
+      <% end %>
+      </td>
     <td class="col-sm-2">
     <%= link_to "編集", edit_work_path(work), class: "btn-default" "btn-xs" %>
-    <%= link_to "削除", work_path(work), method: :delete, class: "btn-danger" "btn-xs" %>
+    <%= link_to "削除", work_path(work), method: :delete, remote: true , class: "btn-danger" "btn-xs" %>
     </td>
     
     <% @sum_time = @sum_time + work.work_time.to_f %>
 　</tr>
 　<% end %>
+
 　<tr class="row">
 　    <td class="col-sm-3"></td>
-　    <td class="col-sm-2"></td>
-　    <td class="col-sm-2"></td>
-　    <td class="col-sm-2">合計時間</td>
+　    <td class="col-sm-2">労働時間</td>
+　    <td class="col-sm-2"><%= @daytime %></td>
+　    <td class="col-sm-2">入力</td>
 　    <td class="col-sm-1"><%= @sum_time %></td>
-　    <td class="col-sm-2"></td>
+　    <td class="col-sm-2">残り<%= (@daytime-@sum_time) %>  </td>
 　</tr>
-</table></div>
+</table>

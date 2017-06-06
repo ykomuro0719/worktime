@@ -1,0 +1,34 @@
+<div class="form-inline">
+<div class="form-group">
+<%= f.label :tasktitle, "大分類",:class => "control-label" %>
+<%= f.text_field :tasktitle, :class =>"form-control" %>
+</div>
+
+<div class="form-group">
+<%= f.label :taskstartdate,"利用開始日" ,:class => "control-label" %>
+<%= f.date_select :taskstartdate, {:end_year => Time.now.year+10}, :class => 'form-control' %>
+</div>
+
+<div class="form-group">
+<%= f.label :taskenddate,"利用終了日" ,:class => "control-label" %>
+<%= f.date_select :taskenddate, {:end_year => Time.now.year+10}, :class => 'form-control' %>
+</div>
+
+<div class="form-group">
+<%= f.label :taskstatus,"有効" ,:class => "control-label"%>
+<%= f.check_box :taskstatus, { }, "true", "false" %>       
+</div>
+    <%= f.fields_for :selectchild1s do |b| %>
+    <%= render "selectchild1_fields", b: b  %>
+    
+    <% end %>
+　  <%= f.link_to_add "Add this", :selectchild1s %>　
+　  
+　  <%= f.fields_for :selectrequests do |c| %>
+    <%= render "selectrequest_fields", c: c  %>
+    
+    <% end %>
+　  <%= f.link_to_add "Add this", :selectrequests %>
+
+    <%= f.submit "送信", :class => "form-control btn-default" %>
+　　</div>

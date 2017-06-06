@@ -1,0 +1,35 @@
+<div class="form-inline">
+<div class="form-group">
+<%= f.label :groupname, "グループ名",:class => "control-label" %>
+<%= f.text_field :groupname ,:class => "form-control" %>
+</div>
+
+<div class="form-group">
+<%= f.label :groupstartdate,"利用開始日" ,:class => "control-label" %>
+<%= f.date_select :groupstartdate, {:end_year => Time.now.year+10}, :class => 'form-control' %>
+</div>
+
+<div class="form-group">
+<%= f.label :groupenddate,"利用終了日" ,:class => "control-label" %>
+<%= f.date_select :groupenddate, {:end_year => Time.now.year+10}, :class => 'form-control' %>
+</div>
+
+<div class="form-group">
+<%= f.label :groupstatus,"有効" ,:class => "control-label"%>
+<%= f.check_box :groupstatus, { }, "true", "false" %>        
+</div>
+</div>
+<div class="form-inline">
+<div class="form-group">
+<%= f.label :groupdetail, "詳細",:class => "control-label" %>
+<%= f.text_area :groupdetail ,:class => "form-control", :size => "40x2" %>
+</div>
+
+<%= f.submit "送信", :class => "form-control btn-default" %>
+</div>
+
+<%= f.fields_for :grouptasks do |b| %>
+<%= render "grouptask_fields", b: b  %>
+  
+<% end %>
+<%= f.link_to_add "タスクの追加", :grouptasks %>　

@@ -8,6 +8,7 @@ class CreateWorks < ActiveRecord::Migration
       t.integer :child1task_id
       t.integer :child2task_id
       t.integer :request_id
+      t.text :comment
       t.timestamps null: false
     end
   end

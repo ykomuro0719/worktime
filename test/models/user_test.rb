@@ -18,6 +18,9 @@
 #  updated_at             :datetime         not null
 #  admin                  :boolean          default("f"), not null
 #  eid                    :integer
+#  group1_id              :integer
+#  group2_id              :integer
+#  group3_id              :integer
 #
 # Indexes
 #

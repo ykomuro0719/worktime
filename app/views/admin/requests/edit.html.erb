@@ -1,9 +1,0 @@
-<h2>edit</h2>
-<%= @request.requestTitle %>
-
-
-<%= form_for(@request, :url => admin_request_path) do |f|  %>
-<%= render "form", f: f %>
-
-<% end %>
-<%= render 'footer' %>

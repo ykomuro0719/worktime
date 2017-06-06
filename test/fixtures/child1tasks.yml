@@ -2,9 +2,11 @@
 #
 # Table name: child1tasks
 #
-#  id           :integer          not null, primary key
-#  child1title  :string           not null
-#  child1status :boolean          default("f"), not null
+#  id              :integer          not null, primary key
+#  child1title     :string           not null
+#  child1status    :boolean          default("f"), not null
+#  child1startdate :date
+#  child1enddate   :date
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

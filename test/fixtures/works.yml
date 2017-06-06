@@ -10,6 +10,7 @@
 #  child1task_id :integer
 #  child2task_id :integer
 #  request_id    :integer
+#  comment       :text
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
